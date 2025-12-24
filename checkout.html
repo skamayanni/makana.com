@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Makana</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --crypto-color: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .checkout-container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .logo-placeholder {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            color: #1f2937;
+            text-align: center;
+            margin: 0 0 20px 0;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .crypto-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .address-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .wallet-address {
+            font-family: monospace;
+            font-size: 0.8rem;
+            word-break: break-all;
+            color: #374151;
+            text-align: left;
+        }
+
+        .copy-btn {
+            background: #f3f4f6;
+            border: none;
+            cursor: pointer;
+            color: #4b5563;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-left: 8px;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #e5e7eb;
+            color: var(--primary-color);
+        }
+
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            background: #1f2937;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            bottom: 115%;
+            right: 50%;
+            transform: translateX(50%);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #qrcode-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #1d4ed8;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .bold-notification {
+            text-align: center;
+            padding: 30px;
+            background-color: #fffbeb;
+            border: 3px solid #f59e0b;
+            border-radius: 12px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .bold-notification p {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1f2937;
+            line-height: 1.5;
+        }
+
+        .bold-notification strong {
+            color: #dc2626;
+            text-decoration: underline;
+        }
+
+        .support-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: #059669;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/68c6bc223c57f819275d5edd/1j544tq3s';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+
+<body>
+
+    <div class="checkout-container">
+        <header class="checkout-header">
+            <div class="logo-placeholder">
+                <a href="index.html">
+                    <img src="img/makana.com (2).svg" alt="logo" loading="lazy" style="height: 30px; width: auto;">
+                </a>
+            </div>
+        </header>
+
+        <h2 id="checkout-title"><strong>SECURE CHECKOUT</strong></h2>
+
+        <form id="payment-form">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" value="MR KING" required>
+            </div>
+
+            <div class="form-group">
+                <label>Select Payment Method</label>
+                <select id="payment-mode" onchange="togglePaymentFields()">
+                    <option value="card">Credit / Debit Card</option>
+                    <option value="crypto">Bitcoin (BTC)</option>
+                </select>
+            </div>
+
+            <div id="card-details">
+                <div class="form-group">
+                    <input type="text" placeholder="Card Number (0000 0000 0000 0000)">
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <input type="text" placeholder="MM/YY" style="flex:1">
+                    <input type="text" placeholder="CVV" style="flex:1">
+                </div>
+            </div>
+
+            <div id="crypto-details" class="hidden">
+                <div class="crypto-box">
+                    <p style="margin:0; font-weight:700; color:#92400e;">Send BTC to this address:</p>
+                    <div class="address-container">
+                        <span class="wallet-address" id="btc-address">1DacXnPZQ943QdAnzzFRRNXU9gAimPd7vP</span>
+                        <button type="button" class="copy-btn" onclick="copyAddress()" title="Copy Address">
+                            <i class="fa-regular fa-copy"></i>
+                            <span class="tooltip" id="copy-tooltip">Copied!</span>
+                        </button>
+                    </div>
+                    <div id="qrcode-container"></div>
+                    <p style="font-size: 0.8em; color: #6b7280; margin-top: 10px;">Scan with your mobile wallet app</p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Complete Purchase</button>
+        </form>
+
+        <div id="crypto-success-message" class="hidden">
+            <div class="bold-notification">
+                <div style="font-size: 50px; margin-bottom: 10px;">⚠️</div>
+                <h2 style="color: #b45309; margin-bottom: 15px;">ACTION REQUIRED</h2>
+                <p>Please ensure you have sent the <strong>transaction receipt</strong> to customer support below before
+                    continuing.</p>
+
+                <button type="button" class="support-btn" id="support-trigger">Contact Customer Support</button>
+
+                <button class="btn-secondary" onclick="location.reload()"
+                    style="margin-top: 20px; background: none; border: 1px solid #ccc; padding: 5px 10px; cursor: pointer; border-radius: 4px; display: block; margin-left: auto; margin-right: auto;">
+                    Go Back
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between Card and Crypto views
+        function togglePaymentFields() {
+            const mode = document.getElementById('payment-mode').value;
+            document.getElementById('card-details').classList.toggle('hidden', mode !== 'card');
+            document.getElementById('crypto-details').classList.toggle('hidden', mode !== 'crypto');
+        }
+
+        // Handle Copy to Clipboard function
+        function copyAddress() {
+            const address = document.getElementById('btc-address').innerText;
+            const tooltip = document.getElementById('copy-tooltip');
+            navigator.clipboard.writeText(address).then(() => {
+                tooltip.classList.add('show');
+                setTimeout(() => { tooltip.classList.remove('show'); }, 2000);
+            });
+        }
+
+        // Generate QR Code on Page Load
+        window.onload = function () {
+            const btcAddress = document.getElementById('btc-address').innerText;
+            new QRCode(document.getElementById("qrcode-container"), {
+                text: `bitcoin:${btcAddress}`,
+                width: 180,
+                height: 180,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        };
+
+        // Form Submit Logic
+        document.getElementById('payment-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const mode = document.getElementById('payment-mode').value;
+
+            if (mode === 'crypto') {
+                document.getElementById('payment-form').style.display = 'none';
+                document.getElementById('checkout-title').style.display = 'none';
+                document.getElementById('crypto-success-message').classList.remove('hidden');
+                window.scrollTo(0, 0);
+            } else {
+                alert("Processing card payment...");
+            }
+        });
+
+        // === UPDATED SUPPORT TRIGGER ===
+        document.getElementById('support-trigger').addEventListener('click', function () {
+            if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+
+                // 1. Get the name from the input field
+                const customerName = document.querySelector('input[value]').value || "Customer";
+
+                // 2. Set the visitor's name in Tawk.to so the agent sees it immediately
+                Tawk_API.setAttributes({
+                    'name': customerName,
+                    'subject': 'Crypto Receipt Submission'
+                }, function (error) { });
+
+                // 3. Open the chat window
+                Tawk_API.maximize();
+
+                // 4. Automatically send a message on behalf of the user
+                // We add a tiny delay (500ms) to ensure the window is fully open
+                setTimeout(() => {
+                    Tawk_API.sendMessage(`Hello, I'm ${customerName}. I've just completed my Bitcoin payment for Makana. I'm here to provide my transaction receipt.`);
+                }, 500);
+
+            } else {
+                alert("Support chat is still loading. Please wait a second.");
+            }
+        });
+    </script>
+</body>
+
+</html>
