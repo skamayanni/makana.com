@@ -2,394 +2,520 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | Makana</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Makana</title>
+    <link rel="stylesheet" href="checkout.css" />
 
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --crypto-color: #f59e0b;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f8f8f8;
+        }
+
+        .top-bar {
+            background: #b7d3ff;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .ticker {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-left 15s linear infinite;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            padding: 20px;
+            overflow-x: hidden;
         }
 
-        .checkout-container {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 480px;
-        }
 
-        .checkout-header {
-            text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f3f4f6;
-        }
 
-        .logo-placeholder {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary-color);
-            letter-spacing: -1px;
-        }
-
-        h2 {
-            color: #1f2937;
-            text-align: center;
-            margin: 0 0 20px 0;
-            font-size: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #374151;
-            font-size: 0.95rem;
-        }
-
-        input,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            transition: border 0.3s;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .crypto-box {
-            background: #fffbeb;
-            border: 1px solid #fde68a;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .address-container {
+        .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            padding: 10px;
-            border-radius: 6px;
-            margin-top: 10px;
+            padding: 14px 20px;
+            gap: 15px;
         }
 
-        .wallet-address {
-            font-family: monospace;
-            font-size: 0.8rem;
-            word-break: break-all;
-            color: #374151;
-            text-align: left;
-        }
-
-        .copy-btn {
-            background: #f3f4f6;
-            border: none;
-            cursor: pointer;
-            color: #4b5563;
-            padding: 8px 12px;
-            border-radius: 4px;
-            margin-left: 8px;
+        .search-box {
+            flex: 1;
+            max-width: 420px;
             position: relative;
-            transition: all 0.2s;
         }
 
-        .copy-btn:hover {
-            background: #e5e7eb;
-            color: var(--primary-color);
-        }
-
-        .tooltip {
-            visibility: hidden;
-            position: absolute;
-            background: #1f2937;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            bottom: 115%;
-            right: 50%;
-            transform: translateX(50%);
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .tooltip.show {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        #qrcode-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .btn-submit {
+        .search-box input {
             width: 100%;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 16px;
+            padding: 10px 40px 10px 14px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+
+        .search-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .header-icons span {
+            margin-left: 16px;
+            font-size: 18px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+            padding: 10px 40px;
+            font-size: 14px;
+        }
+
+        .nav a {
+            color: #334155;
+            cursor: pointer;
+        }
+
+        .nav .active {
             font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
         }
 
-        .btn-submit:hover {
-            background: #1d4ed8;
+        .section {
+            padding: 40px;
         }
 
-        .hidden {
-            display: none;
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .bold-notification {
+        .section-header h2 span {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .header-left {
+                text-align: center;
+            }
+
+            .header-left img {
+                max-height: 40px;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .header-icons {
+                display: flex;
+                justify-content: center;
+                gap: 18px;
+                font-size: 20px;
+            }
+        }
+
+        .checkout-section {
+            padding: 50px 20px;
+            background: #f1f5f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .checkout-section h2 {
             text-align: center;
-            padding: 30px;
-            background-color: #fffbeb;
-            border: 3px solid #f59e0b;
+            margin-bottom: 40px;
+        }
+
+        .checkout-grid {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .checkout-form,
+        .order-summary {
+            background: #fff;
+            padding: 25px;
             border-radius: 12px;
-            animation: fadeIn 0.5s ease-in-out;
+            flex: 1 1 400px;
+            max-width: 480px;
         }
 
-        .bold-notification p {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #1f2937;
-            line-height: 1.5;
+        .checkout-form h3,
+        .order-summary h3 {
+            margin-bottom: 20px;
         }
 
-        .bold-notification strong {
-            color: #dc2626;
-            text-decoration: underline;
-        }
-
-        .support-btn {
-            display: inline-block;
+        .checkout-form label {
+            display: block;
             margin-top: 15px;
-            background: #059669;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+            font-weight: 500;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
+        .checkout-form input,
+        .checkout-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .checkout-form button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #facc15;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .product-summary {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .product-summary img {
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .product-info h4 {
+            margin: 0 0 5px;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: #cbd5e1;
+            padding: 80px 60px 40px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand p {
+            max-width: 320px;
+            line-height: 1.7;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .socials a {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e5e7eb;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .footer-col h4 {
+            color: #f1f5f9;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #e5e7eb;
+        }
+
+        .footer-col .highlight a {
+            color: #3b82f6;
+            font-weight: 500;
+        }
+
+        .footer-col .highlight span {
+            margin-left: 6px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .footer-col h4 {
+                margin-bottom: 12px;
             }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .section {
+                padding: 24px 16px;
+            }
+
+            .nav {
+                padding: 10px 16px;
+            }
+
+            .container {
+                padding: 60px 16px;
+            }
+
+            .footer {
+                padding: 50px 16px 30px;
+            }
+
         }
     </style>
 </head>
 
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/68c6bc223c57f819275d5edd/1j544tq3s';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-</script>
-<!--End of Tawk.to Script-->
-
 <body>
 
-    <div class="checkout-container">
-        <header class="checkout-header">
-            <div class="logo-placeholder">
-                <a href="index.html">
-                    <img src="img/makana.com (2).svg" alt="logo" loading="lazy" style="height: 30px; width: auto;">
-                </a>
-            </div>
-        </header>
-
-        <h2 id="checkout-title"><strong>SECURE CHECKOUT</strong></h2>
-
-        <form id="payment-form">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" value="MR KING" required>
-            </div>
-
-            <div class="form-group">
-                <label>Select Payment Method</label>
-                <select id="payment-mode" onchange="togglePaymentFields()">
-                    <option value="card">Credit / Debit Card</option>
-                    <option value="crypto">Bitcoin (BTC)</option>
-                </select>
-            </div>
-
-            <div id="card-details">
-                <div class="form-group">
-                    <input type="text" placeholder="Card Number (0000 0000 0000 0000)">
-                </div>
-                <div style="display: flex; gap: 15px;">
-                    <input type="text" placeholder="MM/YY" style="flex:1">
-                    <input type="text" placeholder="CVV" style="flex:1">
-                </div>
-            </div>
-
-            <div id="crypto-details" class="hidden">
-                <div class="crypto-box">
-                    <p style="margin:0; font-weight:700; color:#92400e;">Send BTC to this address:</p>
-                    <div class="address-container">
-                        <span class="wallet-address" id="btc-address">1DacXnPZQ943QdAnzzFRRNXU9gAimPd7vP</span>
-                        <button type="button" class="copy-btn" onclick="copyAddress()" title="Copy Address">
-                            <i class="fa-regular fa-copy"></i>
-                            <span class="tooltip" id="copy-tooltip">Copied!</span>
-                        </button>
-                    </div>
-                    <div id="qrcode-container"></div>
-                    <p style="font-size: 0.8em; color: #6b7280; margin-top: 10px;">Scan with your mobile wallet app</p>
-                </div>
-            </div>
-
-            <button type="submit" class="btn-submit">Complete Purchase</button>
-        </form>
-
-        <div id="crypto-success-message" class="hidden">
-            <div class="bold-notification">
-                <div style="font-size: 50px; margin-bottom: 10px;">⚠️</div>
-                <h2 style="color: #b45309; margin-bottom: 15px;">ACTION REQUIRED</h2>
-                <p>Please ensure you have sent the <strong>transaction receipt</strong> to customer support below before
-                    continuing.</p>
-
-                <button type="button" class="support-btn" id="support-trigger">Contact Customer Support</button>
-
-                <button class="btn-secondary" onclick="location.reload()"
-                    style="margin-top: 20px; background: none; border: 1px solid #ccc; padding: 5px 10px; cursor: pointer; border-radius: 4px; display: block; margin-left: auto; margin-right: auto;">
-                    Go Back
-                </button>
-            </div>
+    <!-- 🔹 HEADER -->
+    <!-- TOP INFO BAR -->
+    <div class="top-bar">
+        <div class="ticker">
+            Get up to AED 50,000 Cashback. Offer ends Dec 30.
         </div>
     </div>
 
-    <script>
-        // Toggle between Card and Crypto views
-        function togglePaymentFields() {
-            const mode = document.getElementById('payment-mode').value;
-            document.getElementById('card-details').classList.toggle('hidden', mode !== 'card');
-            document.getElementById('crypto-details').classList.toggle('hidden', mode !== 'crypto');
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <a href="index.html">
+                <img src="img/makana.com (2).svg" alt="logo-light">
+            </a>
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search by Model">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="header-icons">
+            <span>🔖</span>
+            <span>🛒</span>
+            <span>👤</span>
+        </div>
+    </header>
+
+    <!-- 🔹 CHECKOUT SECTION -->
+    <section class="checkout-section">
+        <div class="container">
+           <h2 id="checkout-title"><strong>SECURE CHECKOUT</strong></h2>
+
+            <div class="checkout-grid">
+
+                <!-- Customer Info -->
+                <div class="checkout-form">
+                    <h3>Customer Details</h3>
+                    <form id="checkoutForm">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="example@mail.com" required>
+
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+971 50 123 4567" required>
+
+                        <label for="address">Delivery Address</label>
+                        <textarea id="address" placeholder="Street, City, Country" required></textarea>
+
+                      
+                            <button class="btn-primary">
+                                <a href="payment.html">Place Order</a>
+                            </button>
+                       
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="product-summary">
+                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200" />
+                        <div class="product-info">
+                            <h4 id="productName">Hydraulic Excavator</h4>
+                            <p id="productDesc">Heavy-duty excavator suitable for large construction projects.</p>
+                            <strong id="productPrice">AED 250,000</strong>
+                        </div>
+                    </div>
+
+                    <div class="total">
+                        <span>Total:</span>
+                        <strong id="totalPrice">AED 250,000</strong>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔹 FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col footer-brand">
+                <p>
+                    Makana connects quality machinery with the global market, ensuring
+                    safe transactions for buyers and sellers.
+                </p>
+
+                <div class="socials">
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                    <a href="#">g</a>
+                    <a href="#">★</a>
+                    <a href="#">▶</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Auctions</a></li>
+                    <li><a href="#">Watch shows</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li class="highlight">
+                        <a href="#">Book a demo <span>→</span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Help and Support</h4>
+                <ul>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">How to buy</a></li>
+                    <li><a href="#">How to sell</a></li>
+                    <li><a href="#">Financing</a></li>
+                    <li><a href="#">Installments</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Makana. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="checkout.js">
+        // Get URL params
+        const params = new URLSearchParams(window.location.search);
+        const productName = params.get("name");
+        const productDesc = params.get("desc");
+        const productPrice = params.get("price");
+        const productImg = params.get("img");
+
+        // Update checkout page
+        if (productName) document.getElementById("productName").textContent = productName;
+        if (productDesc) document.getElementById("productDesc").textContent = productDesc;
+        if (productPrice) {
+            document.getElementById("productPrice").textContent = productPrice;
+            document.getElementById("totalPrice").textContent = productPrice;
         }
+        if (productImg) document.getElementById("productImage").src = productImg;
 
-        // Handle Copy to Clipboard function
-        function copyAddress() {
-            const address = document.getElementById('btc-address').innerText;
-            const tooltip = document.getElementById('copy-tooltip');
-            navigator.clipboard.writeText(address).then(() => {
-                tooltip.classList.add('show');
-                setTimeout(() => { tooltip.classList.remove('show'); }, 2000);
-            });
-        }
-
-        // Generate QR Code on Page Load
-        window.onload = function () {
-            const btcAddress = document.getElementById('btc-address').innerText;
-            new QRCode(document.getElementById("qrcode-container"), {
-                text: `bitcoin:${btcAddress}`,
-                width: 180,
-                height: 180,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        };
-
-        // Form Submit Logic
-        document.getElementById('payment-form').addEventListener('submit', function (e) {
+        // Form submission
+        document.getElementById("checkoutForm").addEventListener("submit", function (e) {
             e.preventDefault();
-            const mode = document.getElementById('payment-mode').value;
-
-            if (mode === 'crypto') {
-                document.getElementById('payment-form').style.display = 'none';
-                document.getElementById('checkout-title').style.display = 'none';
-                document.getElementById('crypto-success-message').classList.remove('hidden');
-                window.scrollTo(0, 0);
-            } else {
-                alert("Processing card payment...");
-            }
+            alert("Order placed successfully! Thank you.");
         });
 
-        // === UPDATED SUPPORT TRIGGER ===
-        document.getElementById('support-trigger').addEventListener('click', function () {
-            if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
-
-                // 1. Get the name from the input field
-                const customerName = document.querySelector('input[value]').value || "Customer";
-
-                // 2. Set the visitor's name in Tawk.to so the agent sees it immediately
-                Tawk_API.setAttributes({
-                    'name': customerName,
-                    'subject': 'Crypto Receipt Submission'
-                }, function (error) { });
-
-                // 3. Open the chat window
-                Tawk_API.maximize();
-
-                // 4. Automatically send a message on behalf of the user
-                // We add a tiny delay (500ms) to ensure the window is fully open
-                setTimeout(() => {
-                    Tawk_API.sendMessage(`Hello, I'm ${customerName}. I've just completed my Bitcoin payment for Makana. I'm here to provide my transaction receipt.`);
-                }, 500);
-
-            } else {
-                alert("Support chat is still loading. Please wait a second.");
-            }
-        });
     </script>
 </body>
 
