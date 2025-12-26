@@ -88,6 +88,7 @@
 
 
 
+
         .header {
             display: flex;
             align-items: center;
@@ -238,9 +239,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .product-card1 {
-                display: none;
-            }
         }
 
         /* @media (max-width: 1100px) {
@@ -261,21 +259,21 @@
                 font-size: 16px;
             }
 
-            .product-card1 h4 {
+            /* .product-card1 h4 {
                 font-size: 16px;
-            }
+            } */
 
             .product-card strong {
                 font-size: 15px;
             }
 
-            .product-card1 strong {
+            /* .product-card1 strong {
                 font-size: 15px;
             }
 
             .product-card1 {
                 display: none;
-            }
+            } */
         }
 
 
@@ -378,17 +376,30 @@
             object-fit: contain;
         }
 
-        .product-card1 {
+        /* .product-card1 {
             background: #f8fafc;
             padding: 16px;
             border-radius: 18px;
-        }
+        } */
 
-        .product-card1 img {
+        /* .product-card1 img {
             height: 160px;
             object-fit: contain;
+        } */
+
+
+        /* PRODUCT GRID */
+        .products-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 150px 16px 20px;
         }
 
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
 
         .tags {
             display: flex;
@@ -412,10 +423,10 @@
             font-size: 14px;
         }
 
-        .product-card1 h4 {
+        /* .product-card1 h4 {
             margin: 10px 0;
             font-size: 14px;
-        }
+        } */
 
         .meta {
             display: flex;
@@ -440,7 +451,8 @@
         .container {
             max-width: 1200px;
             margin: auto;
-            padding: 90px 20px;
+            padding-top: 10px;
+            padding-bottom: 20px;
         }
 
         .section-title {
@@ -759,6 +771,11 @@
             }
 
         }
+
+        .line {
+            padding: 150px;
+            /* margin: 100px; */
+        }
     </style>
 </head>
 
@@ -865,31 +882,34 @@
         </div>
     </section>
 
+    <HR>
+    </HR>
+
     <!-- FEATURED PRODUCTS -->
-    <section class="section">
+    <section class="products-container">
         <div class="section-header">
             <h2>Featured products. <span>Top picks.</span></h2>
             <a href="products.html">
                 <button class="btn-outline">View all →</button>
             </a>
         </div>
-
-        <div class="product-grid">
+        <div class="products-grid">
 
             <div class="product-card">
                 <div class="tags">
                     <span class="tag">Customs paid</span>
                     <span class="tag blue">Great deal</span>
                 </div>
-                <a href="products.html">
+                <a href="checkout.html">
                     <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200" />
-                    <h4>Cat 301.6C mini excavator</h4>
+                    <h3>Cat 301.6C Mini Excavator</h3>
+                    <div class="product-desc">Compact excavator ideal for urban and tight job sites.</div>
                     <div class="meta">
                         <span>2011</span>
                         <span>7,940 hrs</span>
                         <span>1,610 kg</span>
                     </div>
-                    <strong>AED 47,000</strong>
+                    <div class="price">AED 47,000</div>
                 </a>
             </div>
 
@@ -898,15 +918,16 @@
                     <span class="tag">Customs paid</span>
                     <span class="tag blue">Great deal</span>
                 </div>
-                <a href="products.html">
+                <a href="checkout.html">
                     <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200" />
-                    <h4>Hino 700 6x4 trailer truck</h4>
+                    <h3>Hino 700 6x4 Trailer Truck</h3>
+                    <div class="product-desc">Heavy-duty long haul truck with excellent reliability.</div>
                     <div class="meta">
                         <span>2018</span>
                         <span>539,455 km</span>
                         <span>16,070 kg</span>
                     </div>
-                    <strong>AED 165,000</strong>
+                    <div class="price">AED 165,000</div>
                 </a>
             </div>
 
@@ -915,38 +936,44 @@
                     <span class="tag">Customs paid</span>
                     <span class="tag blue">Great deal</span>
                 </div>
-                <a href="products.html">
+                <a href="checkout.html">
                     <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200" />
-                    <h4>Cat D6R 2 XL crawler dozer</h4>
+                    <h3>Cat D6R XL Crawler Dozer</h3>
+                    <div class="product-desc">Powerful crawler dozer suitable for large earthworks.</div>
                     <div class="meta">
                         <span>2020</span>
                         <span>12,216 hrs</span>
                         <span>19,066 kg</span>
                     </div>
-                    <strong>AED 405,000</strong>
+                    <div class="price">AED 405,000</div>
                 </a>
             </div>
 
-            <div class="product-card1">
+            <div class="product-card">
                 <div class="tags">
                     <span class="tag">Customs paid</span>
                     <span class="tag blue">Great deal</span>
                 </div>
-                <a href="products.html">
+                <a href="checkout.html">
                     <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200" />
-                    <h4>Scania R410 4x2 trailer truck</h4>
+                    <h3>Scania R410 4x2 Trailer Truck</h3>
+                    <div class="product-desc">Fuel-efficient European truck for logistics operations.</div>
                     <div class="meta">
                         <span>2019</span>
                         <span>1,031,436 km</span>
                         <span>20,500 kg</span>
                     </div>
-                    <strong>AED 162,000</strong>
+                    <div class="price">AED 162,000</div>
                 </a>
             </div>
 
         </div>
+
     </section>
 
+    <div class="line">
+        <hr>
+    </div>
     <!-- NEWS -->
     <section class="container">
         <h2 class="section-title">Our news. <span>Stay updated.</span></h2>
