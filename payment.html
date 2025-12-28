@@ -264,7 +264,8 @@
                 <label>
                     <strong>TOTAL:</strong>
                 </label>
-                <input type="text" value="$ 250,000" required>
+                <input type="text" id="total-amount" readonly required>
+
             </div>
 
             <div class="form-group">
@@ -275,7 +276,7 @@
                     <option value="crypto">Bitcoin (BTC)</option>
                     <option value="card">Credit / Debit Card</option>
                 </select>
-            </div>          
+            </div>
 
             <div id="crypto-details">
                 <div class="crypto-box">
@@ -292,7 +293,7 @@
                 </div>
             </div>
 
-             <div id="card-details" class="hidden">
+            <div id="card-details" class="hidden">
                 <div class="form-group">
                     <input type="text" placeholder="Card Number (0000 0000 0000 0000)">
                 </div>
@@ -321,8 +322,27 @@
             </div>
         </div>
 
-        
+
     </div>
+
+    <script>
+        // Load selected product from checkout
+        const storedProduct = localStorage.getItem("selectedProduct");
+
+        if (!storedProduct) {
+            alert("No order found. Redirecting to products page.");
+            window.location.href = "products.html";
+        }
+
+        const product = JSON.parse(storedProduct);
+
+        // Set total price dynamically
+        const totalInput = document.getElementById("total-amount");
+        if (totalInput) {
+            totalInput.value = product.price;
+        }
+    </script>
+
 
     <script>
         // Toggle between Card and Crypto views
