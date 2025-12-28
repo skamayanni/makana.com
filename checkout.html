@@ -153,11 +153,11 @@
             background: #f1f5f9;
         }
 
-           @media (max-width: 900px) {
-           .checkout-section {
-            padding: 10px 5px;
-            background: #f1f5f9;
-        }
+        @media (max-width: 900px) {
+            .checkout-section {
+                padding: 10px 5px;
+                background: #f1f5f9;
+            }
         }
 
         .container {
@@ -392,7 +392,7 @@
     <!-- 🔹 CHECKOUT SECTION -->
     <section class="checkout-section">
         <div class="container">
-           <h2 id="checkout-title"><strong>SECURE CHECKOUT</strong></h2>
+            <h2 id="checkout-title"><strong>SECURE CHECKOUT</strong></h2>
 
             <div class="checkout-grid">
 
@@ -412,11 +412,12 @@
                         <label for="address">Delivery Address</label>
                         <textarea id="address" placeholder="Street, City, Country" required></textarea>
 
-                      
-                            <button class="btn-primary">
-                                <a href="payment.html">Place Order</a>
-                            </button>
-                       
+
+                        <button type="submit" class="btn-primary">
+                            Place Order
+                        </button>
+
+
                     </form>
                 </div>
 
@@ -500,30 +501,41 @@
         </div>
     </footer>
 
-    <script src="checkout.js">
-        // Get URL params
-        const params = new URLSearchParams(window.location.search);
-        const productName = params.get("name");
-        const productDesc = params.get("desc");
-        const productPrice = params.get("price");
-        const productImg = params.get("img");
+    <script>
+        const productData = localStorage.getItem("selectedProduct");
 
-        // Update checkout page
-        if (productName) document.getElementById("productName").textContent = productName;
-        if (productDesc) document.getElementById("productDesc").textContent = productDesc;
-        if (productPrice) {
-            document.getElementById("productPrice").textContent = productPrice;
-            document.getElementById("totalPrice").textContent = productPrice;
+        if (!productData) {
+            alert("No product selected. Redirecting to products page.");
+            window.location.href = "products.html";
         }
-        if (productImg) document.getElementById("productImage").src = productImg;
 
-        // Form submission
+
+        if (productData) {
+            const product = JSON.parse(productData);
+
+            document.getElementById("productName").textContent = product.name;
+            document.getElementById("productDesc").textContent = product.desc;
+            document.getElementById("productPrice").textContent = product.price;
+            document.getElementById("totalPrice").textContent = product.price;
+
+            document.querySelector(".product-summary img").src = product.img;
+        }
+
         document.getElementById("checkoutForm").addEventListener("submit", function (e) {
             e.preventDefault();
-            alert("Order placed successfully! Thank you.");
-        });
 
+            // optional: basic confirmation
+            // alert("Order placed successfully!");
+
+            // clear selected product
+            localStorage.removeItem("selectedProduct");
+
+            // redirect to payment page
+            window.location.href = "payment.html";
+        });
     </script>
+
+
 </body>
 
 </html>
