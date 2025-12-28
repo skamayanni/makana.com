@@ -908,7 +908,12 @@
                     <span class="tag">Customs paid</span>
                     <span class="tag blue">Great deal</span>
                 </div>
-                <a href="checkout.html">
+                <a href="checkout.html" onclick="selectProduct(
+               'Cat 301.6C Mini Excavator',
+               'Compact excavator ideal for urban and tight job sites.',
+               'USD 47,000',
+               'img/heavy-machine-4.jpg'
+            )">
                     <img src="img/heavy-machine-4.jpg" />
                     <h3>Cat 301.6C Mini Excavator</h3>
                     <div class="product-desc">Compact excavator ideal for urban and tight job sites.</div>
@@ -926,14 +931,19 @@
                     <span class="tag">Customs paid</span>
                     <span class="tag blue">Great deal</span>
                 </div>
-                <a href="checkout.html">
+                <a href="checkout.html" onclick="selectProduct(
+               'Hino 700 6x4 Trailer Truck',
+               'Heavy-duty long haul truck with excellent reliability.',
+               'USD 465,000',
+               'img/wx18h-underground-mining-loader-5.jpg'
+            )">
                     <img src="img/wx18h-underground-mining-loader-5.jpg" />
                     <h3>Hino 700 6x4 Trailer Truck</h3>
                     <div class="product-desc">Heavy-duty long haul truck with excellent reliability.</div>
                     <div class="meta">
-                        <span>2018</span>
-                        <span>539,455 km</span>
-                        <span>16,070 kg</span>
+                        <span>2011</span>
+                        <span>7,940 hrs</span>
+                        <span>1,610 kg</span>
                     </div>
                     <div class="price">USD 165,000</div>
                 </a>
@@ -944,14 +954,19 @@
                     <span class="tag">Customs paid</span>
                     <span class="tag blue">Great deal</span>
                 </div>
-                <a href="checkout.html">
+                <a href="checkout.html" onclick="selectProduct(
+               'Cat D6R XL Crawler Dozer',
+               'Powerful crawler dozer suitable for large earthworks.',
+               'USD 405,000',
+               'img/OIP16.webp'
+            )">
                     <img src="img/OIP16.webp" />
                     <h3>Cat D6R XL Crawler Dozer</h3>
                     <div class="product-desc">Powerful crawler dozer suitable for large earthworks.</div>
                     <div class="meta">
-                        <span>2020</span>
-                        <span>12,216 hrs</span>
-                        <span>19,066 kg</span>
+                        <span>2011</span>
+                        <span>7,940 hrs</span>
+                        <span>1,610 kg</span>
                     </div>
                     <div class="price">USD 405,000</div>
                 </a>
@@ -963,14 +978,19 @@
                         <span class="tag">Customs paid</span>
                         <span class="tag blue">Great deal</span>
                     </div>
-                    <a href="checkout.html">
+                    <a href="checkout.html" onclick="selectProduct(
+               'Scania R410 4x2 Trailer Truck',
+               'Fuel-efficient European truck for logistics operations.',
+               'USD 162,000',
+               'img/pick-carry9.png'
+            )">
                         <img src="img/pick-carry9.png" />
                         <h3>Scania R410 4x2 Trailer Truck</h3>
-                        <div class="product-desc">Fuel-efficient European truck for logistics operations.</div>
+                        <div class="product-desc">Compact excavator ideal for urban and tight job sites.</div>
                         <div class="meta">
-                            <span>2019</span>
-                            <span>1,031,436 km</span>
-                            <span>20,500 kg</span>
+                            <span>2011</span>
+                            <span>7,940 hrs</span>
+                            <span>1,610 kg</span>
                         </div>
                         <div class="price">USD 162,000</div>
                     </a>
@@ -1168,6 +1188,19 @@
         }
         dots.forEach((d, i) => d.onclick = () => { index = i; show(i) });
         setInterval(() => { index = (index + 1) % 3; show(index) }, 4500);
+    </script>
+
+    <script>
+        function selectProduct(name, desc, price, img) {
+            const product = {
+                name: name,
+                desc: desc,
+                price: price,
+                img: img
+            };
+
+            localStorage.setItem("selectedProduct", JSON.stringify(product));
+        }
     </script>
 
 </body>
