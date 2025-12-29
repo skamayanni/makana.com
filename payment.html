@@ -417,6 +417,47 @@
             }
         });
     </script>
-</body>
+ <script>
+        // Disable right-click
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+            alert("Right-click is disabled on this website!");
+        });
+
+        // Disable certain keyboard shortcuts
+        document.addEventListener("keydown", function (e) {
+            // F12
+            if (e.key === "F12") {
+                e.preventDefault();
+                alert("This shortcut is disabled!");
+            }
+
+            // Ctrl+Shift+I or Cmd+Option+I (Open DevTools)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "i") {
+                e.preventDefault();
+                alert("This shortcut is disabled!");
+            }
+
+            // Ctrl+Shift+J or Cmd+Option+J (Console)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "j") {
+                e.preventDefault();
+                alert("This shortcut is disabled!");
+            }
+
+            // Ctrl+U or Cmd+U (View Source)
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "u") {
+                e.preventDefault();
+                alert("Viewing source is disabled!");
+            }
+
+            // Ctrl+S or Cmd+S (Save page)
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
+                e.preventDefault();
+                alert("Saving the page is disabled!");
+            }
+        });
+    </script>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
 </html>
