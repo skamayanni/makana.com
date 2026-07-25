@@ -46,6 +46,18 @@
             box-sizing: border-box;
         }
 
+        /* Global link styling */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0d4ea6;
+            /* Your brand blue */
+        }
+
 
         .top-bar {
             background: #b7d3ff;
@@ -821,7 +833,7 @@
     </header>
 
     <!-- NAV -->
-   <nav class="nav">
+    <nav class="nav">
         <a href="products.html" class="active">⬛ All products</a>
         <a href="products.html">Buy now</a>
         <a href="about.html">About Us</a>
@@ -974,6 +986,7 @@ WHO WE ARE
         }
 
         .company-image img {
+            display: block;
 
             width: 100%;
 
@@ -995,19 +1008,19 @@ WHO WE ARE
 
             position: absolute;
 
-            bottom: 30px;
+            right: -15px;
 
-            right: -25px;
+            bottom: 25px;
 
-            background: #0d4ea6;
+            width: 160px;
+
+            height: 160px;
+
+            border-radius: 20px;
+
+            background: linear-gradient(135deg, #0d4ea6, #1f6ed4);
 
             color: #fff;
-
-            width: 170px;
-
-            height: 170px;
-
-            border-radius: 18px;
 
             display: flex;
 
@@ -1018,6 +1031,8 @@ WHO WE ARE
             align-items: center;
 
             box-shadow: 0 20px 45px rgba(13, 78, 166, .35);
+
+            border: 3px solid rgba(255, 255, 255, .25);
 
         }
 
@@ -1139,29 +1154,55 @@ WHO WE ARE
 
         }
 
-        @media(max-width:768px) {
+        @media (max-width:768px) {
 
             .company-features {
-
                 grid-template-columns: 1fr;
-
             }
 
             .section-title {
-
                 font-size: 30px;
+            }
 
+            .company-image {
+                position: relative;
             }
 
             .experience-card {
 
-                position: relative;
+                position: absolute;
 
-                margin-top: 20px;
+                right: 12px;
 
-                right: 0;
+                bottom: 12px;
 
-                bottom: 0;
+                width: 100px;
+
+                height: 100px;
+
+                border-radius: 16px;
+
+                padding: 10px;
+
+            }
+
+            .experience-card h2 {
+
+                font-size: 40px;
+
+                margin-bottom: 0;
+
+                line-height: 1;
+
+            }
+
+            .experience-card p {
+
+                font-size: 11px;
+
+                line-height: 1.2;
+
+                text-align: center;
 
             }
 
@@ -1758,7 +1799,6 @@ WHY CHOOSE US
 
         <button class="read-all">Read all articles</button>
     </section>
-
 
 
     <!--  -->
