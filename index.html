@@ -1158,18 +1158,11 @@ ABOUT HERO
 
         .about-hero {
 
-            position: relative;
-
-
-            min-height: 100vh;
-
-            padding: 120px 0 80px;
-
-            background: url("images/about-hero.jpg") center center/cover no-repeat;
-
             display: flex;
 
             align-items: center;
+
+            justify-content: center;
 
         }
 
@@ -1194,6 +1187,10 @@ ABOUT HERO
             max-width: 700px;
 
             color: #fff;
+
+            display: flex;
+
+            flex-direction: column;
 
         }
 
@@ -1311,17 +1308,19 @@ ABOUT HERO
 
         }
 
-        @media(max-width:991px) {
-
-            .hero-content h1 {
-
-                font-size: 46px;
-
-            }
+        @media (max-width:991px) {
 
             .about-hero {
 
-                height: 560px;
+                min-height: 850px;
+
+                padding: 100px 0 70px;
+
+            }
+
+            .hero-content h1 {
+
+                font-size: 52px;
 
             }
 
@@ -1337,21 +1336,62 @@ ABOUT HERO
 
             }
 
-            .hero-buttons {
+            .hero-content h1 {
 
-                justify-content: center;
+                font-size: 56px;
+
+                line-height: 1.15;
 
             }
+
+
+        }
+
+        @media(max-width:480px) {
 
             .hero-content h1 {
 
-                font-size: 38px;
+                font-size: 32px;
 
             }
 
+        }
+
+        @media(max-width:768px) {
+
             .hero-content p {
 
-                font-size: 17px;
+                max-width: 95%;
+
+                margin: auto auto 35px;
+
+            }
+
+        }
+
+        @media(max-width:768px) {
+
+            .hero-buttons {
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: center;
+
+                width: 100%;
+
+                gap: 15px;
+
+            }
+
+            .hero-buttons a {
+
+                width: 100%;
+
+                max-width: 320px;
+
+                text-align: center;
 
             }
 
