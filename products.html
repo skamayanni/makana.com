@@ -267,7 +267,7 @@
                 font-size: 26px;
             }
         }
-    
+
         .search-box {
             display: flex;
             align-items: center;
@@ -315,10 +315,9 @@
                 width: 100%;
             }
         }
-</style>
+    </style>
 
     <style>
-
         /* PRODUCT CARD POLISH */
         .products-grid {
             align-items: stretch;
@@ -337,7 +336,7 @@
             box-shadow: 0 16px 34px rgba(15, 23, 42, 0.10);
         }
 
-        .product-card > a {
+        .product-card>a {
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -396,7 +395,7 @@
             font-weight: 750;
         }
 
-        .product-card > a::after {
+        .product-card>a::after {
             content: "View machine  →";
             display: block;
             width: fit-content;
@@ -410,13 +409,13 @@
             transition: background 0.2s ease, color 0.2s ease;
         }
 
-        .product-card:hover > a::after,
-        .product-card > a:focus-visible::after {
+        .product-card:hover>a::after,
+        .product-card>a:focus-visible::after {
             background: #0d4ea6;
             color: #fff;
         }
 
-        .product-card > a:focus-visible {
+        .product-card>a:focus-visible {
             outline: 3px solid rgba(13, 78, 166, 0.25);
             outline-offset: 4px;
             border-radius: 10px;
@@ -447,11 +446,9 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
-
     </style>
 
-<style>
-
+    <style>
         /* HEADER & NAVIGATION UPGRADE */
         .header {
             position: relative;
@@ -537,7 +534,7 @@
             border-bottom: 1px solid #e8edf3;
         }
 
-        .nav > a,
+        .nav>a,
         .nav-dropdown-toggle,
         .nav-locale {
             display: inline-flex;
@@ -548,16 +545,16 @@
             font-weight: 600;
         }
 
-        .nav > a {
+        .nav>a {
             position: relative;
         }
 
-        .nav > a:hover,
-        .nav > a.active {
+        .nav>a:hover,
+        .nav>a.active {
             color: #0d4ea6;
         }
 
-        .nav > a.active::after {
+        .nav>a.active::after {
             position: absolute;
             right: 0;
             bottom: -1px;
@@ -627,7 +624,7 @@
             padding: 7px 10px;
             border: 1px solid #e2e8f0;
             border-radius: 999px;
-            background: rgba(255,255,255,.96);
+            background: rgba(255, 255, 255, .96);
             color: #475569;
             font-size: 12px;
             font-weight: 650;
@@ -815,12 +812,12 @@
                 display: flex;
             }
 
-            .nav > a,
+            .nav>a,
             .nav-dropdown-toggle {
                 min-height: 44px;
             }
 
-            .nav > a.active::after {
+            .nav>a.active::after {
                 display: none;
             }
 
@@ -840,32 +837,39 @@
                 right: 20px;
             }
         }
+    </style>
 
-</style>
-
-<style>
-
+    <style>
         /* FOOTER LINK STATES */
-        .footer-coming-soon {
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 7px;
-            color: #94a3b8;
+        .footer {
+            background: #1f2937;
+            color: #cbd5e1;
+            padding: 80px 60px 40px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand p {
+            max-width: 320px;
+            line-height: 1.7;
             font-size: 14px;
-        }
-
-        .footer-coming-soon small {
-            padding: 3px 7px;
-            border: 1px solid rgba(148, 163, 184, .25);
-            border-radius: 999px;
             color: #94a3b8;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: .02em;
         }
 
-        .socials span {
+        .socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .socials a {
             width: 28px;
             height: 28px;
             border-radius: 6px;
@@ -875,15 +879,88 @@
             justify-content: center;
             color: #e5e7eb;
             font-size: 12px;
-            cursor: default;
+            text-decoration: none;
         }
 
-</style>
+        .footer-col h4 {
+            color: #f1f5f9;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #e5e7eb;
+        }
+
+        .footer-col .highlight a {
+            color: #3b82f6;
+            font-weight: 500;
+        }
+
+        .footer-col .highlight span {
+            margin-left: 6px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-col h4 {
+                margin-bottom: 12px;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .section {
+                padding: 24px 16px;
+            }
+
+            .nav {
+                padding: 10px 16px;
+            }
+
+            .container {
+                padding: 60px 16px;
+            }
+
+            .footer {
+                padding: 50px 16px 30px;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
     <!-- Expired promotional banner removed -->
-<!-- HEADER -->
+    <!-- HEADER -->
     <header class="header">
         <div class="header-left">
             <a href="index.html">
@@ -892,14 +969,10 @@
         </div>
 
         <div class="search-box">
-            <input
-                type="search"
-                id="productSearch"
-                placeholder="Search by model or machine..."
-                aria-label="Search products by model or machine"
-                autocomplete="off"
-            >
-            <button class="search-icon" id="clearProductSearch" type="button" aria-label="Clear search" title="Clear search">×</button>
+            <input type="search" id="productSearch" placeholder="Search by model or machine..."
+                aria-label="Search products by model or machine" autocomplete="off">
+            <button class="search-icon" id="clearProductSearch" type="button" aria-label="Clear search"
+                title="Clear search">×</button>
         </div>
 
         <div class="header-icons" aria-label="Quick links">
@@ -920,8 +993,8 @@
     </header>
 
     <!-- NAV -->
-    <button class="mobile-nav-toggle" id="mobileNavToggle" type="button"
-        aria-expanded="false" aria-controls="mainNavigation">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" type="button" aria-expanded="false"
+        aria-controls="mainNavigation">
         <span aria-hidden="true">☰</span> Menu
     </button>
     <nav class="nav" id="mainNavigation">
@@ -930,8 +1003,8 @@
         <a href="about.html">About Us</a>
         <a href="#" id="navContactLink">Contact Us</a>
         <div class="nav-dropdown">
-            <button class="nav-dropdown-toggle" id="moreMenuToggle" type="button"
-                aria-expanded="false" aria-controls="moreMenu">More <span aria-hidden="true">▾</span></button>
+            <button class="nav-dropdown-toggle" id="moreMenuToggle" type="button" aria-expanded="false"
+                aria-controls="moreMenu">More <span aria-hidden="true">▾</span></button>
             <div class="nav-dropdown-menu" id="moreMenu">
                 <a href="about.html">About Makana</a>
                 <a href="#footer">Help &amp; Support</a>
@@ -958,12 +1031,13 @@
         <!-- PAGE 1 -->
         <p id="searchResultsStatus" class="search-results-status" aria-live="polite"></p>
 
-    <div class="product-page active">
+        <div class="product-page active">
 
             <div class="products-grid">
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                    'Agricultural Dump Trailer / Tipping Trailer',
                    'Dump Trailer ideal for urban and tight job sites.',
@@ -987,7 +1061,8 @@
 
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                    'Telehandler (Telescopic Handler)',
                    'Telescopic Handler with excellent reliability.',
@@ -1008,7 +1083,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                    'Root Rake Attachment',
                    'Root Rake Attachment (Excavator/Dozer Root Rake).',
@@ -1028,7 +1104,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                    'Cummins Marine Diesel Engine',
                    'QSK95.7550GSI: Cummins OEM Marine Engine.',
@@ -1053,7 +1130,8 @@
             <div class="products-grid">
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'John Deere Gator Utility Vehicle (UTV)',
                'John Deere Gator Utility Vehicles.',
@@ -1073,7 +1151,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Log Grapple / Timber Grapple',
                'Log / Timber Grapple with excellent reliability.',
@@ -1093,7 +1172,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Compact Track Loader (CTL)',
                'Track Loader suitable for large earthworks.',
@@ -1113,7 +1193,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Self-Propelled Wood Chipper',
                'Self-Propelled Wood / Tree Chipper.',
@@ -1138,7 +1219,8 @@
             <div class="products-grid">
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
             'Mini Excavator',
             'Compact excavator ideal for urban and tight job sites.',
@@ -1158,7 +1240,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Root Grapple / Brush Grapple',
                'Root / Brush Grapple with excellent reliability.',
@@ -1178,7 +1261,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Rock Picker / Stone Picker Attachment',
                'Powerful Stone Picker Attachment.',
@@ -1198,7 +1282,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Excavator Grapple',
                'Excavator Grapple / Log Grapple.',
@@ -1223,7 +1308,8 @@
             <div class="products-grid">
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Ripper Attachment / Root Rake',
                'Root Rake ideal for urban and tight job sites.',
@@ -1243,7 +1329,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Crawler Excavator (Long-Reach Excavator)',
                'Long-Reach Excavator with excellent reliability.',
@@ -1263,7 +1350,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Truck-Mounted Knuckle Boom Crane',
                'Knuckle Boom Crane suitable for large earthworks.',
@@ -1284,7 +1372,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Load-Haul-Dump (LHD) Loader',
                'Underground Mining Loader.',
@@ -1313,7 +1402,8 @@
             <div class="products-grid">
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                    'Agricultural Dump Trailer / Tipping Trailer',
                    'Dump Trailer ideal for urban and tight job sites.',
@@ -1337,7 +1427,8 @@
 
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                    'Telehandler (Telescopic Handler)',
                    'Telescopic Handler with excellent reliability.',
@@ -1358,7 +1449,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                    'Root Rake Attachment',
                    'Root Rake Attachment (Excavator/Dozer Root Rake).',
@@ -1378,7 +1470,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                    'Cummins Marine Diesel Engine',
                    'QSK95.7550GSI: Cummins OEM Marine Engine.',
@@ -1403,7 +1496,8 @@
             <div class="products-grid">
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'John Deere Gator Utility Vehicle (UTV)',
                'John Deere Gator Utility Vehicles.',
@@ -1423,7 +1517,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Log Grapple / Timber Grapple',
                'Log / Timber Grapple with excellent reliability.',
@@ -1443,7 +1538,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Compact Track Loader (CTL)',
                'Track Loader suitable for large earthworks.',
@@ -1463,7 +1559,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Self-Propelled Wood Chipper',
                'Self-Propelled Wood / Tree Chipper.',
@@ -1488,7 +1585,8 @@
             <div class="products-grid">
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
             'Mini Excavator',
             'Compact excavator ideal for urban and tight job sites.',
@@ -1508,7 +1606,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Root Grapple / Brush Grapple',
                'Root / Brush Grapple with excellent reliability.',
@@ -1528,7 +1627,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Rock Picker / Stone Picker Attachment',
                'Powerful Stone Picker Attachment.',
@@ -1548,7 +1648,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Excavator Grapple',
                'Excavator Grapple / Log Grapple.',
@@ -1573,7 +1674,8 @@
             <div class="products-grid">
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Ripper Attachment / Root Rake',
                'Root Rake ideal for urban and tight job sites.',
@@ -1593,7 +1695,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Crawler Excavator (Long-Reach Excavator)',
                'Long-Reach Excavator with excellent reliability.',
@@ -1613,7 +1716,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Truck-Mounted Knuckle Boom Crane',
                'Knuckle Boom Crane suitable for large earthworks.',
@@ -1634,7 +1738,8 @@
                 </div>
 
                 <div class="product-card">
-                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <button class="save-machine-button" type="button" aria-label="Save this machine"
+                        aria-pressed="false">♡ <span>Save</span></button>
                     <a href="product-details.html" onclick="selectProduct(
                'Load-Haul-Dump (LHD) Loader',
                'Underground Mining Loader.',
@@ -1656,7 +1761,8 @@
             </div>
         </div>
 
-        <div id="noSearchResults" class="no-search-results">No machines match your search. Try another model or keyword.</div>
+        <div id="noSearchResults" class="no-search-results">No machines match your search. Try another model or keyword.
+        </div>
 
         <div class="pagination">
 
@@ -1728,7 +1834,7 @@
     </style>
 
     <!-- FOOTER -->
-    
+
     <div class="saved-panel-backdrop" id="savedPanelBackdrop" hidden>
         <section class="saved-panel" role="dialog" aria-modal="true" aria-labelledby="savedPanelTitle">
             <div class="saved-panel-heading">
@@ -1736,15 +1842,17 @@
                     <p class="saved-eyebrow">YOUR SHORTLIST</p>
                     <h2 id="savedPanelTitle">Saved machines</h2>
                 </div>
-                <button type="button" class="saved-close" id="closeSavedPanel" aria-label="Close saved machines">×</button>
+                <button type="button" class="saved-close" id="closeSavedPanel"
+                    aria-label="Close saved machines">×</button>
             </div>
             <div id="savedMachinesList" class="saved-machines-list">
-                <p class="saved-empty">You haven't saved any machines yet. Use the Save button on a product card to build your shortlist.</p>
+                <p class="saved-empty">You haven't saved any machines yet. Use the Save button on a product card to
+                    build your shortlist.</p>
             </div>
         </section>
     </div>
 
-<footer class="footer" id="footer">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-col footer-brand">
                 <p>
@@ -1752,12 +1860,12 @@
                     safe transactions for buyers and sellers.
                 </p>
 
-                <div class="socials" aria-label="Social media channels">
-                    <span aria-label="LinkedIn">in</span>
-                    <span aria-label="Instagram">ig</span>
-                    <span aria-label="Google">G</span>
-                    <span aria-label="Reviews">★</span>
-                    <span aria-label="Video channel">▶</span>
+                <div class="socials">
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                    <a href="#">g</a>
+                    <a href="#">★</a>
+                    <a href="#">▶</a>
                 </div>
             </div>
 
@@ -1765,12 +1873,12 @@
                 <h4>Company</h4>
                 <ul>
                     <li><a href="about.html">About us</a></li>
-                    <li><span class="footer-coming-soon">Auctions <small>Coming soon</small></span></li>
-                    <li><span class="footer-coming-soon">Watch shows <small>Coming soon</small></span></li>
-                    <li><span class="footer-coming-soon">News <small>Coming soon</small></span></li>
-                    <li><span class="footer-coming-soon">Documentation <small>Coming soon</small></span></li>
+                    <li><a href="#">Auctions</a></li>
+                    <li><a href="#">Watch shows</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Documentation</a></li>
                     <li class="highlight">
-                        <span class="footer-coming-soon">Book a demo <small>Coming soon</small></span>
+                        <a href="#">Book a demo <span>→</span></a>
                     </li>
                 </ul>
             </div>
@@ -1778,20 +1886,22 @@
             <div class="footer-col">
                 <h4>Help and Support</h4>
                 <ul>
-                    <li><a href="#" id="footerContactLink">Contact Us</a></li>
+                    <li><a href="#" onclick="Tawk_API.maximize(); return false;">
+                            Contact Us
+                        </a></li>
                     <li><a href="products.html">How to buy</a></li>
-                    <li><span class="footer-coming-soon">How to sell <small>Coming soon</small></span></li>
-                    <li><span class="footer-coming-soon">Financing <small>Coming soon</small></span></li>
-                    <li><span class="footer-coming-soon">Installments <small>Coming soon</small></span></li>
-                    <li><span class="footer-coming-soon">FAQ <small>Coming soon</small></span></li>
+                    <li><a href="#">How to sell</a></li>
+                    <li><a href="#">Financing</a></li>
+                    <li><a href="#">Installments</a></li>
+                    <li><a href="#">FAQ</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><span class="footer-coming-soon">Privacy Policy <small>Coming soon</small></span></li>
-                    <li><span class="footer-coming-soon">Terms &amp; Conditions <small>Coming soon</small></span></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
                 </ul>
             </div>
         </div>
@@ -1904,7 +2014,7 @@
 
         // Keep pagination working normally after a search is cleared.
         const originalShowPage = showPage;
-        showPage = function(pageNumber) {
+        showPage = function (pageNumber) {
             originalShowPage(pageNumber);
             if (!productSearchInput.value.trim()) {
                 productPages.forEach((page, index) => {
@@ -1917,7 +2027,7 @@
         clearProductSearchButton.style.visibility = "hidden";
 
     </script>
-<!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
@@ -1932,174 +2042,174 @@
     <!--End of Tawk.to Script-->
 
 
-<script>
-(() => {
-    const STORAGE_KEY = "makana_saved_machines";
-    const savedButton = document.getElementById("savedMachinesButton");
-    const savedCount = document.getElementById("savedMachinesCount");
-    const savedBackdrop = document.getElementById("savedPanelBackdrop");
-    const savedList = document.getElementById("savedMachinesList");
-    const closeSaved = document.getElementById("closeSavedPanel");
-    const checkoutButton = document.getElementById("checkoutButton");
-    const supportButton = document.getElementById("supportButton");
-    const navContactLink = document.getElementById("navContactLink");
-    const navToggle = document.getElementById("mobileNavToggle");
-    const nav = document.getElementById("mainNavigation");
-    const moreToggle = document.getElementById("moreMenuToggle");
-    const moreMenu = document.getElementById("moreMenu");
+    <script>
+        (() => {
+            const STORAGE_KEY = "makana_saved_machines";
+            const savedButton = document.getElementById("savedMachinesButton");
+            const savedCount = document.getElementById("savedMachinesCount");
+            const savedBackdrop = document.getElementById("savedPanelBackdrop");
+            const savedList = document.getElementById("savedMachinesList");
+            const closeSaved = document.getElementById("closeSavedPanel");
+            const checkoutButton = document.getElementById("checkoutButton");
+            const supportButton = document.getElementById("supportButton");
+            const navContactLink = document.getElementById("navContactLink");
+            const navToggle = document.getElementById("mobileNavToggle");
+            const nav = document.getElementById("mainNavigation");
+            const moreToggle = document.getElementById("moreMenuToggle");
+            const moreMenu = document.getElementById("moreMenu");
 
-    function readSaved() {
-        try {
-            const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-            return Array.isArray(value) ? value : [];
-        } catch {
-            return [];
-        }
-    }
-
-    function writeSaved(items) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-        renderSaved();
-    }
-
-    function renderSaved() {
-        const items = readSaved();
-        savedCount.textContent = items.length;
-        savedList.innerHTML = "";
-
-        if (!items.length) {
-            savedList.innerHTML = '<p class="saved-empty">You haven’t saved any machines yet. Use the Save button on a product card to build your shortlist.</p>';
-        } else {
-            items.forEach((item) => {
-                const row = document.createElement("article");
-                row.className = "saved-machine-item";
-
-                const image = document.createElement("img");
-                image.src = item.img;
-                image.alt = item.name;
-
-                const info = document.createElement("div");
-                const title = document.createElement("h3");
-                title.textContent = item.name;
-                const price = document.createElement("p");
-                price.textContent = item.price;
-                info.append(title, price);
-
-                const remove = document.createElement("button");
-                remove.className = "saved-remove";
-                remove.type = "button";
-                remove.textContent = "Remove";
-                remove.addEventListener("click", () => {
-                    writeSaved(readSaved().filter(saved => saved.name !== item.name));
-                    syncSaveButtons();
-                });
-
-                row.append(image, info, remove);
-                savedList.append(row);
-            });
-        }
-        syncSaveButtons();
-    }
-
-    function syncSaveButtons() {
-        const savedNames = new Set(readSaved().map(item => item.name));
-        document.querySelectorAll(".product-card").forEach(card => {
-            const button = card.querySelector(".save-machine-button");
-            const link = card.querySelector('a[href="product-details.html"]');
-            if (!button || !link) return;
-
-            const name = link.querySelector("h3")?.textContent.trim() || "";
-            const isSaved = savedNames.has(name);
-            button.classList.toggle("is-saved", isSaved);
-            button.setAttribute("aria-pressed", String(isSaved));
-            button.innerHTML = isSaved ? '♥ <span>Saved</span>' : '♡ <span>Save</span>';
-            button.setAttribute("aria-label", isSaved ? `Remove ${name} from saved machines` : `Save ${name}`);
-        });
-    }
-
-    document.querySelectorAll(".product-card").forEach(card => {
-        const button = card.querySelector(".save-machine-button");
-        const link = card.querySelector('a[href="product-details.html"]');
-        if (!button || !link) return;
-
-        button.addEventListener("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const name = link.querySelector("h3")?.textContent.trim() || "Machine";
-            const desc = link.querySelector(".product-desc")?.textContent.trim() || "";
-            const price = link.querySelector(".price")?.textContent.trim() || "";
-            const img = link.querySelector("img")?.getAttribute("src") || "";
-            const items = readSaved();
-
-            if (items.some(item => item.name === name)) {
-                writeSaved(items.filter(item => item.name !== name));
-            } else {
-                writeSaved([...items, { name, desc, price, img }]);
+            function readSaved() {
+                try {
+                    const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+                    return Array.isArray(value) ? value : [];
+                } catch {
+                    return [];
+                }
             }
-        });
-    });
 
-    savedButton.addEventListener("click", () => {
-        renderSaved();
-        savedBackdrop.hidden = false;
-        closeSaved.focus();
-    });
+            function writeSaved(items) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+                renderSaved();
+            }
 
-    function closeSavedPanel() {
-        savedBackdrop.hidden = true;
-        savedButton.focus();
-    }
+            function renderSaved() {
+                const items = readSaved();
+                savedCount.textContent = items.length;
+                savedList.innerHTML = "";
 
-    closeSaved.addEventListener("click", closeSavedPanel);
-    savedBackdrop.addEventListener("click", event => {
-        if (event.target === savedBackdrop) closeSavedPanel();
-    });
+                if (!items.length) {
+                    savedList.innerHTML = '<p class="saved-empty">You haven’t saved any machines yet. Use the Save button on a product card to build your shortlist.</p>';
+                } else {
+                    items.forEach((item) => {
+                        const row = document.createElement("article");
+                        row.className = "saved-machine-item";
 
-    document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && !savedBackdrop.hidden) closeSavedPanel();
-    });
+                        const image = document.createElement("img");
+                        image.src = item.img;
+                        image.alt = item.name;
 
-    checkoutButton.addEventListener("click", () => {
-        const selected = localStorage.getItem("selectedProduct");
-        window.location.href = selected ? "checkout.html" : "products.html";
-    });
+                        const info = document.createElement("div");
+                        const title = document.createElement("h3");
+                        title.textContent = item.name;
+                        const price = document.createElement("p");
+                        price.textContent = item.price;
+                        info.append(title, price);
 
-    function openSupport() {
-        if (window.Tawk_API && typeof window.Tawk_API.maximize === "function") {
-            window.Tawk_API.maximize();
-        } else {
-            alert("Live chat is not available yet. Please try again in a moment.");
-        }
-    }
+                        const remove = document.createElement("button");
+                        remove.className = "saved-remove";
+                        remove.type = "button";
+                        remove.textContent = "Remove";
+                        remove.addEventListener("click", () => {
+                            writeSaved(readSaved().filter(saved => saved.name !== item.name));
+                            syncSaveButtons();
+                        });
 
-    supportButton.addEventListener("click", openSupport);
-    navContactLink.addEventListener("click", event => {
-        event.preventDefault();
-        openSupport();
-    });
+                        row.append(image, info, remove);
+                        savedList.append(row);
+                    });
+                }
+                syncSaveButtons();
+            }
 
-    const footerContactLink = document.getElementById("footerContactLink");
-    if (footerContactLink) {
-        footerContactLink.addEventListener("click", event => {
-            event.preventDefault();
-            openSupport();
-        });
-    }
+            function syncSaveButtons() {
+                const savedNames = new Set(readSaved().map(item => item.name));
+                document.querySelectorAll(".product-card").forEach(card => {
+                    const button = card.querySelector(".save-machine-button");
+                    const link = card.querySelector('a[href="product-details.html"]');
+                    if (!button || !link) return;
 
-    navToggle.addEventListener("click", () => {
-        const isOpen = nav.classList.toggle("mobile-open");
-        navToggle.setAttribute("aria-expanded", String(isOpen));
-    });
+                    const name = link.querySelector("h3")?.textContent.trim() || "";
+                    const isSaved = savedNames.has(name);
+                    button.classList.toggle("is-saved", isSaved);
+                    button.setAttribute("aria-pressed", String(isSaved));
+                    button.innerHTML = isSaved ? '♥ <span>Saved</span>' : '♡ <span>Save</span>';
+                    button.setAttribute("aria-label", isSaved ? `Remove ${name} from saved machines` : `Save ${name}`);
+                });
+            }
 
-    moreToggle.addEventListener("click", () => {
-        const isOpen = moreMenu.classList.toggle("open");
-        moreToggle.setAttribute("aria-expanded", String(isOpen));
-    });
+            document.querySelectorAll(".product-card").forEach(card => {
+                const button = card.querySelector(".save-machine-button");
+                const link = card.querySelector('a[href="product-details.html"]');
+                if (!button || !link) return;
 
-    renderSaved();
-})();
-</script>
+                button.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const name = link.querySelector("h3")?.textContent.trim() || "Machine";
+                    const desc = link.querySelector(".product-desc")?.textContent.trim() || "";
+                    const price = link.querySelector(".price")?.textContent.trim() || "";
+                    const img = link.querySelector("img")?.getAttribute("src") || "";
+                    const items = readSaved();
+
+                    if (items.some(item => item.name === name)) {
+                        writeSaved(items.filter(item => item.name !== name));
+                    } else {
+                        writeSaved([...items, { name, desc, price, img }]);
+                    }
+                });
+            });
+
+            savedButton.addEventListener("click", () => {
+                renderSaved();
+                savedBackdrop.hidden = false;
+                closeSaved.focus();
+            });
+
+            function closeSavedPanel() {
+                savedBackdrop.hidden = true;
+                savedButton.focus();
+            }
+
+            closeSaved.addEventListener("click", closeSavedPanel);
+            savedBackdrop.addEventListener("click", event => {
+                if (event.target === savedBackdrop) closeSavedPanel();
+            });
+
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape" && !savedBackdrop.hidden) closeSavedPanel();
+            });
+
+            checkoutButton.addEventListener("click", () => {
+                const selected = localStorage.getItem("selectedProduct");
+                window.location.href = selected ? "checkout.html" : "products.html";
+            });
+
+            function openSupport() {
+                if (window.Tawk_API && typeof window.Tawk_API.maximize === "function") {
+                    window.Tawk_API.maximize();
+                } else {
+                    alert("Live chat is not available yet. Please try again in a moment.");
+                }
+            }
+
+            supportButton.addEventListener("click", openSupport);
+            navContactLink.addEventListener("click", event => {
+                event.preventDefault();
+                openSupport();
+            });
+
+            const footerContactLink = document.getElementById("footerContactLink");
+            if (footerContactLink) {
+                footerContactLink.addEventListener("click", event => {
+                    event.preventDefault();
+                    openSupport();
+                });
+            }
+
+            navToggle.addEventListener("click", () => {
+                const isOpen = nav.classList.toggle("mobile-open");
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+            });
+
+            moreToggle.addEventListener("click", () => {
+                const isOpen = moreMenu.classList.toggle("open");
+                moreToggle.setAttribute("aria-expanded", String(isOpen));
+            });
+
+            renderSaved();
+        })();
+    </script>
 
 </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
