@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Choose a preferred payment method for your Makana order enquiry.">
+  <title>Choose Payment Method | Makana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="checkout.css">
+  <style>
+    .payment-wrap{max-width:850px;margin:42px auto;padding:0 22px 55px}
+    .payment-intro{text-align:center;margin-bottom:28px}
+    .payment-intro .eyebrow{font-size:11px;letter-spacing:1.5px;font-weight:800;color:#2864a8}
+    .payment-intro h1{font-size:32px;letter-spacing:-1px;margin:9px 0}
+    .payment-intro p{max-width:590px;margin:auto;color:#687789;font-size:14px}
+    .payment-card{background:#fff;border:1px solid #e5eaf0;border-radius:18px;padding:28px;box-shadow:0 10px 32px rgba(16,24,40,.05)}
+    .order-ref{background:#f5f8fc;border:1px solid #e8edf4;border-radius:11px;padding:14px 16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px;font-size:13px}
+    .order-ref span{color:#687789}.order-ref strong{color:#183b63}
+    .method-list{display:grid;gap:13px;margin:20px 0}
+    .method-option{display:flex;align-items:flex-start;gap:14px;padding:18px;border:1px solid #dfe6ef;border-radius:13px;cursor:pointer;transition:.18s}
+    .method-option:has(input:checked){border-color:#2864a8;background:#f3f8ff;box-shadow:0 0 0 2px rgba(40,100,168,.08)}
+    .method-option input{width:18px;height:18px;margin-top:3px;accent-color:#1559a6;flex:0 0 auto}
+    .method-icon{width:42px;height:42px;border-radius:11px;background:#edf4fc;display:grid;place-items:center;font-size:20px;flex:0 0 auto}
+    .method-text{min-width:0}.method-text strong{display:block;font-size:15px;color:#18283d}.method-text small{display:block;color:#718096;font-size:12px;margin-top:4px;line-height:1.55}
+    .disclosure{font-size:12px;line-height:1.65;color:#526477;background:#f8fafc;border:1px solid #e8edf3;border-radius:11px;padding:14px;margin:18px 0}
+    .continue-method{width:100%;border:0;border-radius:10px;background:#1559a6;color:#fff;padding:15px 18px;font:700 14px Inter;cursor:pointer}
+    .continue-method:hover{background:#104783}.continue-method:disabled{opacity:.5;cursor:not-allowed}
+    .error{display:none;color:#a12b2b;background:#fff3f2;border:1px solid #ffd6d2;padding:12px;border-radius:9px;font-size:13px;margin-bottom:14px}.error.show{display:block}
+    .back{text-align:center;margin-top:17px;font-size:13px;color:#2864a8}
+    .back a{text-decoration:none}
+    .not-found{text-align:center;padding:25px}
+    @media(max-width:560px){.payment-wrap{margin:25px auto;padding:0 14px 40px}.payment-card{padding:19px}.payment-intro h1{font-size:26px}.method-option{padding:14px;gap:10px}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Makana home"><img src="img/makana.com (2).svg" alt="Makana Machinery Hub"></a>
+    <div class="header-trust"><span class="lock">✓</span> Payment preference</div>
+    <a class="back-link" href="products.html">← Continue shopping</a>
+  </header>
+
+  <main class="payment-wrap">
+    <div class="payment-intro">
+      <div class="eyebrow">MAKANA MACHINERY HUB</div>
+      <h1>Choose your preferred payment method</h1>
+      <p>Select how you would prefer to pay. Makana customer care will contact you to verify the order and provide the confirmed next steps.</p>
+    </div>
+
+    <section class="payment-card" id="paymentCard">
+      <div class="order-ref">
+        <span>Order enquiry reference</span>
+        <strong id="orderReference">Loading…</strong>
+      </div>
+      <h2 style="font-size:18px;margin-bottom:5px">Available preferences</h2>
+      <p style="font-size:12px;color:#718096">Choose one option to continue to customer care.</p>
+
+      <form id="methodForm">
+        <div class="method-list">
+          <label class="method-option">
+            <input type="radio" name="paymentMethod" value="Cryptocurrency" required>
+            <span class="method-icon" aria-hidden="true">₿</span>
+            <span class="method-text">
+              <strong>Cryptocurrency</strong>
+              <small>I would prefer to discuss an approved cryptocurrency payment option with customer care.</small>
+            </span>
+          </label>
+          <label class="method-option">
+            <input type="radio" name="paymentMethod" value="Bank transfer" required>
+            <span class="method-icon" aria-hidden="true">▤</span>
+            <span class="method-text">
+              <strong>Bank transfer</strong>
+              <small>I would prefer to discuss a verified bank transfer option with customer care.</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="disclosure">
+          <strong>No payment is made on this page.</strong> Selecting a method only records your preference. Customer care must verify the seller, machine availability, final price, delivery costs and official payment instructions. Never send money to an account or wallet until you have independently verified the payment details.
+        </div>
+
+        <div class="error" id="methodError" role="alert" aria-live="polite"></div>
+        <button class="continue-method" id="continueMethod" type="submit">Continue to customer care →</button>
+      </form>
+    </section>
+
+    <div class="back"><a href="checkout.html">← Back to checkout details</a></div>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Makana Machinery Hub</span>
+    <span>Order enquiry · Payment preference</span>
+  </footer>
+
+  <script>
+    let openMakanaChatWhenReady = false;
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_API.onLoad = function () {
+      if (openMakanaChatWhenReady && typeof window.Tawk_API.maximize === "function") {
+        window.Tawk_API.maximize();
+      }
+    };
+
+    (() => {
+      const reference = document.getElementById("orderReference");
+      const form = document.getElementById("methodForm");
+      const error = document.getElementById("methodError");
+      const button = document.getElementById("continueMethod");
+      let draft = null;
+
+      try {
+        draft = JSON.parse(sessionStorage.getItem("makanaOrderDraft") || "null");
+      } catch (_) {}
+
+      if (!draft || !draft.reference || !draft.product) {
+        document.getElementById("paymentCard").innerHTML =
+          '<div class="not-found"><h2 style="font-size:20px;margin-bottom:8px">No active order enquiry found</h2><p style="color:#718096;font-size:13px">Please return to the products page, select a machine and complete the checkout details first.</p><p style="margin-top:18px"><a href="products.html" style="color:#1559a6;font-weight:700">Browse machines</a></p></div>';
+        return;
+      }
+
+      reference.textContent = draft.reference;
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        error.classList.remove("show");
+
+        const selected = form.querySelector('input[name="paymentMethod"]:checked');
+        if (!selected) {
+          error.textContent = "Please select a preferred payment method.";
+          error.classList.add("show");
+          return;
+        }
+
+        draft.paymentPreference = selected.value;
+        draft.status = "Awaiting customer-care confirmation";
+
+        try {
+          sessionStorage.setItem("makanaOrderDraft", JSON.stringify(draft));
+        } catch (_) {}
+
+        const message = [
+          "Hello Makana Customer Care, I would like assistance completing an order enquiry.",
+          "Reference: " + draft.reference,
+          "Machine: " + draft.product.name,
+          "Displayed price: " + (draft.product.displayedPrice ? "$" + Number(draft.product.displayedPrice).toLocaleString("en-US") : "To be confirmed"),
+          "Preferred payment method: " + selected.value,
+          "Name: " + (draft.customer && draft.customer.name ? draft.customer.name : "Not provided"),
+          "Please confirm machine availability, final price, delivery costs and verified payment instructions."
+        ].join("\\n");
+
+        button.disabled = true;
+        button.textContent = "Opening customer care…";
+
+        // Tawk.to chat is embedded below. If it is still loading, its onLoad
+        // callback will open it when ready.
+        openMakanaChatWhenReady = true;
+
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === "function") {
+          window.Tawk_API.maximize();
+        } else {
+          error.textContent = "Customer care chat is still loading. Please wait a moment and press Continue again.";
+          error.classList.add("show");
+          button.disabled = false;
+          button.textContent = "Continue to customer care →";
+        }
+
+        // Keep the enquiry message available for the customer to copy into chat.
+        const existing = document.getElementById("chatMessagePreview");
+        if (existing) existing.remove();
+
+        const preview = document.createElement("div");
+        preview.id = "chatMessagePreview";
+        preview.className = "disclosure";
+        preview.style.marginTop = "16px";
+        const label = document.createElement("strong");
+        label.textContent = "Your enquiry details";
+        const text = document.createElement("pre");
+        text.style.whiteSpace = "pre-wrap";
+        text.style.font = "12px/1.6 Inter, sans-serif";
+        text.style.margin = "8px 0 0";
+        text.textContent = message;
+        preview.append(label, text);
+        document.getElementById("paymentCard").append(preview);
+      });
+    })();
+  </script>
+
+  <script>
+    var Tawk_API = window.Tawk_API || {};
+    var Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script");
+      var s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = "https://embed.tawk.to/68c6bc223c57f819275d5edd/1j544tq3s";
+      s1.charset = "UTF-8";
+      s1.setAttribute("crossorigin", "*");
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine Details | Makana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: #f6f8fb;
+      color: #101828;
+      line-height: 1.6
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    .top {
+      background: #102b50;
+      color: #fff;
+      padding: 17px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -1px
+    }
+
+    .brand span {
+      color: #8dbaff
+    }
+
+    .top a.back {
+      font-size: 14px;
+      color: #e4edfa
+    }
+
+    main {
+      max-width: 1160px;
+      margin: 34px auto;
+      padding: 0 22px
+    }
+
+    .crumb {
+      font-size: 13px;
+      color: #667085;
+      margin-bottom: 20px
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      gap: 34px;
+      align-items: start
+    }
+
+    .gallery,
+    .info,
+    .details-card {
+      background: #fff;
+      border: 1px solid #e7ebf1;
+      border-radius: 18px;
+      box-shadow: 0 8px 28px rgba(16, 24, 40, .05)
+    }
+
+    .gallery {
+      padding: 18px
+    }
+
+    .main-image {
+      height: 410px;
+      background: #f5f7fa;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden
+    }
+
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain
+    }
+
+    .image-note {
+      font-size: 12px;
+      color: #98a2b3;
+      margin-top: 10px
+    }
+
+    .info {
+      padding: 27px;
+      position: sticky;
+      top: 20px
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #2864a8
+    }
+
+    h1 {
+      font-size: 29px;
+      line-height: 1.25;
+      letter-spacing: -.8px;
+      margin: 9px 0 12px
+    }
+
+    .description {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 22px
+    }
+
+    .price-label {
+      font-size: 12px;
+      color: #667085
+    }
+
+    .price {
+      font-size: 30px;
+      font-weight: 800;
+      color: #1456a0;
+      margin: 2px 0 19px
+    }
+
+    .notice {
+      background: #f0f6ff;
+      border: 1px solid #d7e7ff;
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 12px;
+      color: #355477;
+      margin: 16px 0 20px
+    }
+
+    .actions {
+      display: grid;
+      gap: 11px
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font: 700 14px Inter;
+      cursor: pointer;
+      text-align: center
+    }
+
+    .primary {
+      background: #1559a6;
+      color: #fff
+    }
+
+    .primary:hover {
+      background: #104783
+    }
+
+    .secondary {
+      background: #eef2f7;
+      color: #25364b
+    }
+
+    .details-card {
+      margin-top: 28px;
+      padding: 25px
+    }
+
+    h2 {
+      font-size: 19px;
+      margin-bottom: 16px
+    }
+
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+
+    .spec {
+      background: #f7f9fc;
+      border: 1px solid #edf0f4;
+      border-radius: 11px;
+      padding: 13px
+    }
+
+    .spec span {
+      display: block;
+      font-size: 11px;
+      color: #667085;
+      margin-bottom: 4px
+    }
+
+    .spec strong {
+      font-size: 14px
+    }
+
+    .details-copy {
+      font-size: 14px;
+      color: #667085
+    }
+
+    .missing {
+      color: #667085;
+      font-size: 13px
+    }
+
+    footer {
+      text-align: center;
+      color: #98a2b3;
+      font-size: 12px;
+      padding: 35px 15px
+    }
+
+    @media(max-width:800px) {
+      .layout {
+        grid-template-columns: 1fr
+      }
+
+      .info {
+        position: static
+      }
+
+      .main-image {
+        height: 320px
+      }
+    }
+
+    @media(max-width:480px) {
+      main {
+        margin: 22px auto;
+        padding: 0 14px
+      }
+
+      .info,
+      .gallery,
+      .details-card {
+        padding: 18px
+      }
+
+      h1 {
+        font-size: 24px
+      }
+
+      .specs {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .main-image {
+        height: 250px
+      }
+
+      .price {
+        font-size: 26px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top">
+    <a class="brand" href="products.html">MAKANA<span>.</span></a>
+    <a class="back" href="products.html">← Back to all machines</a>
+  </header>
+  <main>
+    <div class="crumb"><a href="products.html">All machines</a> &nbsp;›&nbsp; Machine details</div>
+    <section class="layout">
+      <div class="gallery">
+        <div class="main-image"><img id="machineImage" src="" alt="Selected machine"></div>
+        <p class="image-note">Product image supplied in the listing. Contact Makana for additional photographs.</p>
+      </div>
+      <aside class="info">
+        <div class="eyebrow">Machine information</div>
+        <h1 id="machineName">Machine details</h1>
+        <p class="description" id="machineDescription"></p>
+        <div class="price-label">Listed price</div>
+        <div class="price" id="machinePrice"></div>
+        <div class="notice">Specifications, condition, availability and delivery details should be confirmed with the
+          Makana team before placing an order.</div>
+        <div class="actions">
+          <button class="btn primary" id="continueButton" type="button">Continue to checkout</button>
+          <a class="btn secondary" href="products.html">← Browse other machines</a>
+        </div>
+      </aside>
+    </section>
+    <section class="details-card">
+      <h2>Machine overview</h2>
+      <p class="details-copy" id="overview"></p>
+      <div style="height:20px"></div>
+      <h2>Specifications</h2>
+      <div class="specs">
+        <div class="spec"><span>Year</span><strong id="machineYear">Not specified</strong></div>
+        <div class="spec"><span>Weight / capacity</span><strong id="machineWeight">Not specified</strong></div>
+        <div class="spec"><span>Condition</span><strong>Confirm with seller</strong></div>
+      </div>
+      <p class="missing" style="margin-top:15px">Further technical specifications and machine condition have not been
+        provided in the listing. Please enquire before purchase.</p>
+    </section>
+  </main>
+  <footer>© 2026 Makana Machinery Hub. All rights reserved.</footer>
+  <script>
+    (() => {
+      let product = null;
+      try { product = JSON.parse(localStorage.getItem("selectedProduct") || "null"); } catch (_) { }
+      if (!product || !product.name) {
+        document.getElementById("machineName").textContent = "No machine selected";
+        document.getElementById("machineDescription").textContent = "Please return to the machines page and select a machine to view its details.";
+        document.getElementById("machinePrice").textContent = "—";
+        document.getElementById("overview").textContent = "No product has been selected yet.";
+        document.getElementById("continueButton").disabled = true;
+        document.getElementById("continueButton").style.opacity = ".5";
+        return;
+      }
+      document.title = product.name + " | Makana";
+      document.getElementById("machineName").textContent = product.name;
+      document.getElementById("machineDescription").textContent = product.desc || "Contact Makana for more information about this machine.";
+      document.getElementById("machinePrice").textContent = product.price || "Contact for price";
+      document.getElementById("overview").textContent = product.desc || "Contact Makana for a full machine description.";
+      const image = document.getElementById("machineImage");
+      if (product.img) { image.src = product.img; image.alt = product.name; }
+      else { image.alt = "No product image available"; image.style.display = "none"; }
+      // Extract only specification values visibly present in the corresponding listing card.
+      const cards = [...document.querySelectorAll(".unused")]; // Listing specifications are not transferred yet.
+      document.getElementById("continueButton").addEventListener("click", () => {
+        window.location.href = "checkout.html";
+      });
+    })();
+  </script>
+</body>
+
+</html>

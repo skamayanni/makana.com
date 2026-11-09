@@ -2,27 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | Makana</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Machines for Sale | Makana</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --crypto-color: #f59e0b;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            padding: 20px;
+            font-family: Inter, system-ui, sans-serif;
+            background: #f8fafc;
+            color: #020617;
+            overflow-x: hidden;
         }
 
         /* Global link styling */
@@ -37,440 +34,1890 @@
             /* Your brand blue */
         }
 
-        .checkout-container {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        img {
             width: 100%;
-            max-width: 480px;
-        }
-
-        .checkout-header {
-            text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f3f4f6;
-        }
-
-        .logo-placeholder {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary-color);
-            letter-spacing: -1px;
-        }
-
-        h2 {
-            color: #1f2937;
-            text-align: center;
-            margin: 0 0 20px 0;
-            font-size: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #374151;
-            font-size: 0.95rem;
+            border-radius: 14px;
         }
 
-        input,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
+
+        .top-bar {
+            background: #b7d3ff;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .ticker {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-left 15s linear infinite;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+
+        * {
             box-sizing: border-box;
-            font-size: 1rem;
-            transition: border 0.3s;
         }
 
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--primary-color);
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
-        .crypto-box {
-            background: #fffbeb;
-            border: 1px solid #fde68a;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
+        body {
+            overflow-x: hidden;
         }
 
-        .address-container {
+
+        /* HEADER */
+        .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            padding: 10px;
-            border-radius: 6px;
-            margin-top: 10px;
+            padding: 14px 20px;
+            gap: 16px;
+            background: #fff;
         }
 
-        .wallet-address {
-            font-family: monospace;
-            font-size: 0.8rem;
-            word-break: break-all;
-            color: #374151;
-            text-align: left;
+        .header-left img {
+            max-height: 44px;
         }
 
-        .copy-btn {
-            background: #f3f4f6;
-            border: none;
-            cursor: pointer;
-            color: #4b5563;
-            padding: 8px 12px;
-            border-radius: 4px;
-            margin-left: 8px;
+        .search-box {
+            flex: 1;
+            max-width: 420px;
             position: relative;
-            transition: all 0.2s;
         }
 
-        .copy-btn:hover {
-            background: #e5e7eb;
-            color: var(--primary-color);
-        }
-
-        .tooltip {
-            visibility: hidden;
-            position: absolute;
-            background: #1f2937;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            bottom: 115%;
-            right: 50%;
-            transform: translateX(50%);
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .tooltip.show {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        #qrcode-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .btn-submit {
+        .search-box input {
             width: 100%;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
+            padding: 10px 40px 10px 14px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .header-icons span {
+            margin-left: 16px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* NAV */
+        .nav {
+            display: flex;
+            gap: 18px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav a {
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .nav .active {
+            font-weight: 600;
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 40px 16px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* PRODUCT GRID */
+        .products-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 16px 80px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .product-card {
+            background: #fff;
+            padding: 16px;
+            border-radius: 18px;
+            transition: .25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .08);
+        }
+
+        .product-card img {
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 12px;
+        }
+
+        .product-card h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            display: flex;
+            gap: 10px;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .price {
             font-size: 16px;
             font-weight: 600;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #1f2937;
+            color: #cbd5e1;
+            padding: 60px 16px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+        }
+
+        .footer h4 {
+            font-size: 14px;
+            margin-bottom: 14px;
+            color: #f1f5f9;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .header-icons {
+                display: flex;
+                justify-content: center;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+        }
+    
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .search-box input {
+            min-width: 0;
+            width: 100%;
+        }
+
+        .search-icon {
+            border: 0;
+            background: transparent;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
+            font-size: 22px;
+            line-height: 1;
+            padding: 4px 8px;
+            color: inherit;
         }
 
-        .btn-submit:hover {
-            background: #1d4ed8;
+        .search-results-status {
+            max-width: 1200px;
+            margin: 18px auto 0;
+            padding: 0 16px;
+            color: #475569;
+            font-size: 14px;
         }
 
-        .hidden {
+        .search-results-status:empty {
             display: none;
         }
 
-        .bold-notification {
+        .no-search-results {
+            display: none;
+            max-width: 1200px;
+            margin: 28px auto;
+            padding: 24px 16px;
             text-align: center;
-            padding: 30px;
-            background-color: #fffbeb;
-            border: 3px solid #f59e0b;
-            border-radius: 12px;
-            animation: fadeIn 0.5s ease-in-out;
+            color: #475569;
         }
 
-        .bold-notification p {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #1f2937;
+        @media (max-width: 768px) {
+            .search-box {
+                width: 100%;
+            }
+        }
+</style>
+
+    <style>
+
+        /* PRODUCT CARD POLISH */
+        .products-grid {
+            align-items: stretch;
+            gap: 24px;
+        }
+
+        .product-card {
+            height: 100%;
+            padding: 14px;
+            border: 1px solid #e5eaf1;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+        }
+
+        .product-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.10);
+        }
+
+        .product-card > a {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .product-card img {
+            display: block;
+            width: 100%;
+            height: 190px;
+            padding: 12px;
+            box-sizing: border-box;
+            object-fit: contain;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .product-card h3 {
+            min-height: 42px;
+            line-height: 1.35;
+            font-size: 16px;
+            font-weight: 650;
+            color: #172033;
+        }
+
+        .product-desc {
+            min-height: 36px;
             line-height: 1.5;
         }
 
-        .bold-notification strong {
-            color: #dc2626;
-            text-decoration: underline;
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 7px;
         }
 
-        .support-btn {
-            display: inline-block;
-            margin-top: 15px;
-            background: #059669;
-            color: white;
-            padding: 12px 24px;
+        .meta span {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 8px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        .price {
+            margin-top: auto;
+            padding-top: 14px;
+            color: #0d4ea6;
+            font-size: 18px;
+            font-weight: 750;
+        }
+
+        .product-card > a::after {
+            content: "View machine  →";
+            display: block;
+            width: fit-content;
+            margin-top: 12px;
+            padding: 9px 13px;
+            border: 1px solid #0d4ea6;
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+            color: #0d4ea6;
+            font-size: 13px;
+            font-weight: 650;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
+        .product-card:hover > a::after,
+        .product-card > a:focus-visible::after {
+            background: #0d4ea6;
+            color: #fff;
+        }
+
+        .product-card > a:focus-visible {
+            outline: 3px solid rgba(13, 78, 166, 0.25);
+            outline-offset: 4px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .products-grid {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+                gap: 16px;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .product-card {
+                padding: 12px;
+            }
+
+            .product-card img {
+                height: 175px;
+            }
+
+            .product-card h3,
+            .product-desc {
+                min-height: 0;
             }
         }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
     </style>
+
+<style>
+
+        /* HEADER & NAVIGATION UPGRADE */
+        .header {
+            position: relative;
+            z-index: 20;
+            min-height: 82px;
+            padding: 14px clamp(16px, 4vw, 48px);
+            gap: 24px;
+            background: #fff;
+            border-bottom: 1px solid #edf1f5;
+        }
+
+        .header-left img {
+            width: auto;
+            max-width: 190px;
+            max-height: 48px;
+            object-fit: contain;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-action {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            min-height: 42px;
+            padding: 8px 11px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            background: transparent;
+            color: #334155;
+            font: inherit;
+            cursor: pointer;
+            transition: background .2s ease, border-color .2s ease, color .2s ease;
+        }
+
+        .header-action:hover {
+            background: #f1f6fd;
+            border-color: #dbeafe;
+            color: #0d4ea6;
+        }
+
+        .header-action-icon {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .header-action-label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 18px;
+            height: 18px;
+            padding: 0 5px;
+            border-radius: 999px;
+            background: #0d4ea6;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+        }
+
+        .nav {
+            position: relative;
+            z-index: 15;
+            align-items: center;
+            padding: 0 clamp(16px, 4vw, 48px);
+            min-height: 52px;
+            gap: 28px;
+            background: #fff;
+            border-bottom: 1px solid #e8edf3;
+        }
+
+        .nav > a,
+        .nav-dropdown-toggle,
+        .nav-locale {
+            display: inline-flex;
+            align-items: center;
+            min-height: 52px;
+            color: #475569;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .nav > a {
+            position: relative;
+        }
+
+        .nav > a:hover,
+        .nav > a.active {
+            color: #0d4ea6;
+        }
+
+        .nav > a.active::after {
+            position: absolute;
+            right: 0;
+            bottom: -1px;
+            left: 0;
+            height: 2px;
+            background: #0d4ea6;
+            content: "";
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            gap: 7px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: calc(100% - 2px);
+            left: -14px;
+            display: none;
+            min-width: 180px;
+            padding: 8px;
+            border: 1px solid #e5eaf1;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, .12);
+        }
+
+        .nav-dropdown-menu.open {
+            display: grid;
+        }
+
+        .nav-dropdown-menu a {
+            padding: 10px;
+            border-radius: 7px;
+            color: #475569;
+            font-size: 13px;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: #f1f6fd;
+            color: #0d4ea6;
+        }
+
+        .nav-locale {
+            margin-left: auto;
+            color: #64748b;
+            font-size: 12px;
+            letter-spacing: .08em;
+        }
+
+        .save-machine-button {
+            position: absolute;
+            z-index: 3;
+            top: 24px;
+            right: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            background: rgba(255,255,255,.96);
+            color: #475569;
+            font-size: 12px;
+            font-weight: 650;
+            cursor: pointer;
+        }
+
+        .product-card {
+            position: relative;
+        }
+
+        .save-machine-button:hover,
+        .save-machine-button.is-saved {
+            border-color: #bfdbfe;
+            background: #eff6ff;
+            color: #0d4ea6;
+        }
+
+        .saved-panel-backdrop {
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(15, 23, 42, .42);
+        }
+
+        .saved-panel-backdrop[hidden] {
+            display: none;
+        }
+
+        .saved-panel {
+            width: min(440px, 100%);
+            height: 100%;
+            overflow-y: auto;
+            padding: 28px 22px;
+            background: #fff;
+            box-shadow: -12px 0 40px rgba(15, 23, 42, .16);
+        }
+
+        .saved-panel-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e8edf3;
+        }
+
+        .saved-eyebrow {
+            margin-bottom: 6px;
+            color: #0d4ea6;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .12em;
+        }
+
+        .saved-panel-heading h2 {
+            color: #172033;
+            font-size: 23px;
+        }
+
+        .saved-close {
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .saved-machines-list {
+            display: grid;
+            gap: 12px;
+            padding-top: 18px;
+        }
+
+        .saved-empty {
+            padding: 22px 12px;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .saved-machine-item {
+            display: grid;
+            grid-template-columns: 76px 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border: 1px solid #e8edf3;
+            border-radius: 12px;
+        }
+
+        .saved-machine-item img {
+            width: 76px;
+            height: 66px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        .saved-machine-item h3 {
+            margin: 0 0 5px;
+            color: #172033;
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .saved-machine-item p {
+            margin: 0;
+            color: #0d4ea6;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .saved-remove {
+            padding: 6px;
+            border: 0;
+            background: transparent;
+            color: #64748b;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 12px;
+                padding: 12px 16px;
+            }
+
+            .header-left img {
+                max-width: 160px;
+                max-height: 42px;
+            }
+
+            .header-icons {
+                gap: 2px;
+            }
+
+            .header-action {
+                min-height: 38px;
+                padding: 7px;
+            }
+
+            .header-action-label {
+                display: none;
+            }
+
+            .search-box {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                max-width: none;
+            }
+
+            .mobile-nav-toggle {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                width: 100%;
+                padding: 12px 16px;
+                border: 0;
+                border-bottom: 1px solid #e8edf3;
+                background: #fff;
+                color: #334155;
+                font-size: 14px;
+                font-weight: 650;
+                text-align: left;
+                cursor: pointer;
+            }
+
+            .nav {
+                display: none;
+                align-items: stretch;
+                flex-direction: column;
+                gap: 0;
+                padding: 6px 16px 14px;
+                border-bottom: 1px solid #e8edf3;
+            }
+
+            .nav.mobile-open {
+                display: flex;
+            }
+
+            .nav > a,
+            .nav-dropdown-toggle {
+                min-height: 44px;
+            }
+
+            .nav > a.active::after {
+                display: none;
+            }
+
+            .nav-dropdown-menu {
+                position: static;
+                margin: 0 0 8px 10px;
+                box-shadow: none;
+            }
+
+            .nav-locale {
+                min-height: 36px;
+                margin-left: 0;
+            }
+
+            .save-machine-button {
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+</style>
+
+<style>
+
+        /* FOOTER LINK STATES */
+        .footer-coming-soon {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 7px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .footer-coming-soon small {
+            padding: 3px 7px;
+            border: 1px solid rgba(148, 163, 184, .25);
+            border-radius: 999px;
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .02em;
+        }
+
+        .socials span {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e5e7eb;
+            font-size: 12px;
+            cursor: default;
+        }
+
+</style>
 </head>
 
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/68c6bc223c57f819275d5edd/1j544tq3s';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-</script>
-<!--End of Tawk.to Script-->
-
 <body>
+    <!-- Expired promotional banner removed -->
+<!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <a href="index.html">
+                <img src="img/makana.com (2).svg" alt="Makana Logo">
+            </a>
+        </div>
 
-    <div class="checkout-container">
-        <header class="checkout-header">
-            <div class="logo-placeholder">
-                <a href="index.html">
-                    <img src="img/makana.com (2).svg" alt="logo" loading="lazy" style="height: 30px; width: auto;">
-                </a>
+        <div class="search-box">
+            <input
+                type="search"
+                id="productSearch"
+                placeholder="Search by model or machine..."
+                aria-label="Search products by model or machine"
+                autocomplete="off"
+            >
+            <button class="search-icon" id="clearProductSearch" type="button" aria-label="Clear search" title="Clear search">×</button>
+        </div>
+
+        <div class="header-icons" aria-label="Quick links">
+            <button class="header-action" id="savedMachinesButton" type="button" aria-label="Saved machines">
+                <span class="header-action-icon" aria-hidden="true">♡</span>
+                <span class="header-action-label">Saved</span>
+                <span class="header-badge" id="savedMachinesCount">0</span>
+            </button>
+            <button class="header-action" id="checkoutButton" type="button" aria-label="Go to checkout">
+                <span class="header-action-icon" aria-hidden="true">🛒</span>
+                <span class="header-action-label">Checkout</span>
+            </button>
+            <button class="header-action" id="supportButton" type="button" aria-label="Contact customer support">
+                <span class="header-action-icon" aria-hidden="true">☏</span>
+                <span class="header-action-label">Support</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- NAV -->
+    <button class="mobile-nav-toggle" id="mobileNavToggle" type="button"
+        aria-expanded="false" aria-controls="mainNavigation">
+        <span aria-hidden="true">☰</span> Menu
+    </button>
+    <nav class="nav" id="mainNavigation">
+        <a href="products.html" class="active">All products</a>
+        <a href="products.html">Buy now</a>
+        <a href="about.html">About Us</a>
+        <a href="#" id="navContactLink">Contact Us</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" id="moreMenuToggle" type="button"
+                aria-expanded="false" aria-controls="moreMenu">More <span aria-hidden="true">▾</span></button>
+            <div class="nav-dropdown-menu" id="moreMenu">
+                <a href="about.html">About Makana</a>
+                <a href="#footer">Help &amp; Support</a>
             </div>
-        </header>
+        </div>
+        <span class="nav-locale" aria-label="Display currency">USD</span>
+    </nav>
 
-        <h2 id="checkout-title"><strong> </strong></h2>
+    <style>
+        .nav a {
+            text-decoration: none;
+        }
+    </style>
 
-        <form id="payment-form">
-            <div class="form-group">
-                <label>
-                    <strong>TOTAL:</strong>
-                </label>
-                <input type="text" id="total-amount" readonly required>
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <h1>All Machines for Sale</h1>
+        <p>Browse all available heavy equipment and trucks ready for purchase.</p>
+    </section>
 
-            </div>
+    <!-- PRODUCTS -->
+    <section class="products-container">
 
-            <div class="form-group">
-                <label>
-                    <strong>Select Payment Method</strong>
-                </label>
-                <select id="payment-mode" onchange="togglePaymentFields()">
-                    <option value="crypto">Bitcoin (BTC)</option>
-                    <option value="card">Credit / Debit Card</option>
-                </select>
-            </div>
+        <!-- PAGE 1 -->
+        <p id="searchResultsStatus" class="search-results-status" aria-live="polite"></p>
 
-            <div id="crypto-details">
-                <div class="crypto-box">
-                    <p style="margin:0; font-weight:700; color:#92400e;">Send BTC to this address:</p>
-                    <div class="address-container">
-                        <span class="wallet-address" id="btc-address">1DacXnPZQ943QdAnzzFRRNXU9gAimPd7vP</span>
-                        <button type="button" class="copy-btn" onclick="copyAddress()" title="Copy Address">
-                            <i class="fa-regular fa-copy"></i>
-                            <span class="tooltip" id="copy-tooltip">Copied!</span>
-                        </button>
-                    </div>
-                    <div id="qrcode-container"></div>
-                    <p style="font-size: 0.8em; color: #6b7280; margin-top: 10px;">Scan with your mobile wallet app</p>
+    <div class="product-page active">
+
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+                   'Agricultural Dump Trailer / Tipping Trailer',
+                   'Dump Trailer ideal for urban and tight job sites.',
+                   'USD 67,000',
+                   'img/heavy-machine-4.jpg'
+            )">
+
+                        <img src="img/heavy-machine-4.jpg" />
+                        <h3>Agricultural Dump Trailer / Tipping Trailer</h3>
+                        <div class="product-desc">Dump Trailer ideal for urban and tight job sites.</div>
+                        <div class="meta">
+                            <span>2021</span>
+                            <!-- <span>N/A (Tow-behind)</span> -->
+                            <span>5,500 kg</span>
+                        </div>
+                        <div class="price">USD 67,000</div>
+                    </a>
                 </div>
+
+
+
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+                   'Telehandler (Telescopic Handler)',
+                   'Telescopic Handler with excellent reliability.',
+                   'USD 65,300',
+                   'img/pick-carry9.png'
+                )">
+
+                        <img src="img/pick-carry9.png" />
+                        <h3>Telehandler </h3>
+                        <div class="product-desc">Telehandler (Telescopic Handler).</div>
+                        <div class="meta">
+                            <span>2022</span>
+                            <span>125 HP</span>
+                            <span>11,000 kg</span>
+                        </div>
+                        <div class="price">USD 65,300</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+                   'Root Rake Attachment',
+                   'Root Rake Attachment (Excavator/Dozer Root Rake).',
+                   'USD 24,999',
+                   'img/heavy-machine-14.jpg'
+                )">
+                        <img src="img/heavy-machine-14.jpg" />
+                        <h3>Root Rake Attachment</h3>
+                        <div class="product-desc">Root Rake Attachment (Excavator/Dozer Root Rake).</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <!-- <span>31,436 km</span> -->
+                            <span>2,200 kg</span>
+                        </div>
+                        <div class="price">USD 24,999</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+                   'Cummins Marine Diesel Engine',
+                   'QSK95.7550GSI: Cummins OEM Marine Engine.',
+                   'USD 36,950',
+                   'img/whatsappnew.jpeg'
+                )">
+                        <img src="img/whatsappnew.jpeg" />
+                        <h3>Cummins Marine Diesel Engine</h3>
+                        <div class="product-desc">QSK95.7550GSI: Cummins OEM Marine Engine.</div>
+                        <div class="meta">
+                            <span>2022</span>
+                            <span>4000 HP</span>
+                            <span>1,100 kg</span>
+                        </div>
+                        <div class="price">USD 36,950</div>
+                    </a>
+                </div>
+
             </div>
 
-            <div id="card-details" class="hidden">
-                <div class="form-group">
-                    <input type="text" placeholder="Card Number (0000 0000 0000 0000)">
+
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'John Deere Gator Utility Vehicle (UTV)',
+               'John Deere Gator Utility Vehicles.',
+               'USD 42,000',
+               'img/heavy-machine-19.jpg'
+            )">
+                        <img src="img/heavy-machine-19.jpg" />
+                        <h3>John Deere Gator Utility Vehicle (UTV)</h3>
+                        <div class="product-desc">John Deere Gator Utility Vehicles.</div>
+                        <div class="meta">
+                            <span>2021</span>
+                            <span>54 HP</span>
+                            <span>900 kg</span>
+                        </div>
+                        <div class="price">USD 42,000</div>
+                    </a>
                 </div>
-                <div style="display: flex; gap: 15px;">
-                    <input type="text" placeholder="MM/YY" style="flex:1">
-                    <input type="text" placeholder="CVV" style="flex:1">
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Log Grapple / Timber Grapple',
+               'Log / Timber Grapple with excellent reliability.',
+               'USD 15,999',
+               'img/img18.jpg'
+            )">
+                        <img src="img/img18.jpg" />
+                        <h3>Log Grapple</h3>
+                        <div class="product-desc">Log Grapple / Timber Grapple.</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <!-- <span>39,450 km</span> -->
+                            <span>1,400 kg</span>
+                        </div>
+                        <div class="price">USD 15,999</div>
+                    </a>
                 </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Compact Track Loader (CTL)',
+               'Track Loader suitable for large earthworks.',
+               'USD 61,500',
+               'img/heavy-machine-13.jpg'
+            )">
+                        <img src="img/heavy-machine-13.jpg" />
+                        <h3>Compact Track Loader (CTL)</h3>
+                        <div class="product-desc">Track Loader suitable for large earthworks.</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <span>100 HP</span>
+                            <span>4,800 kg</span>
+                        </div>
+                        <div class="price">USD 61,500</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Self-Propelled Wood Chipper',
+               'Self-Propelled Wood / Tree Chipper.',
+               'USD 74,100',
+               'img/heavy-machine-12.jpg'
+            )">
+                        <img src="img/heavy-machine-12.jpg" />
+                        <h3>Self-Propelled Wood Chipper</h3>
+                        <div class="product-desc">Self-Propelled Wood Chipper / Tree Chipper.</div>
+                        <div class="meta">
+                            <span>2019</span>
+                            <span>320 HP</span>
+                            <span>18,500 kg</span>
+                        </div>
+                        <div class="price">USD 74,100</div>
+                    </a>
+                </div>
+
             </div>
 
-            <button type="submit" class="btn-submit">Complete Purchase</button>
-        </form>
 
-        <div id="crypto-success-message" class="hidden">
-            <div class="bold-notification">
-                <div style="font-size: 50px; margin-bottom: 10px;">⚠️</div>
-                <h2 style="color: #b45309; margin-bottom: 15px;">ACTION REQUIRED</h2>
-                <p>Please ensure you have sent the <strong>transaction receipt</strong> to customer support below before
-                    continuing.</p>
+            <div class="products-grid">
 
-                <button type="button" class="support-btn" id="support-trigger">Contact Customer Support</button>
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+            'Mini Excavator',
+            'Compact excavator ideal for urban and tight job sites.',
+            'USD 31,500',
+            'img/escavator.webp'
+          )">
+                        <img src="img/escavator.webp" />
+                        <h3>Mini Excavator</h3>
+                        <div class="product-desc">Compact excavator ideal for urban and tight job sites.</div>
+                        <div class="meta">
+                            <span>2023</span>
+                            <span>35 HP</span>
+                            <span>3,600 kg</span>
+                        </div>
+                        <div class="price">USD 31,500</div>
+                    </a>
+                </div>
 
-                <button class="btn-secondary" onclick="location.reload()"
-                    style="margin-top: 20px; background: none; border: 1px solid #ccc; padding: 5px 10px; cursor: pointer; border-radius: 4px; display: block; margin-left: auto; margin-right: auto;">
-                    Go Back
-                </button>
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Root Grapple / Brush Grapple',
+               'Root / Brush Grapple with excellent reliability.',
+               'USD 6,950',
+               'img/EZ-Grapple-onfront15.png'
+            )">
+                        <img src="img/EZ-Grapple-onfront15.png" />
+                        <h3>Root Grapple</h3>
+                        <div class="product-desc">Root Grapple / Brush Grapple.</div>
+                        <div class="meta">
+                            <span>2023</span>
+                            <!-- <span>39,455 km</span> -->
+                            <span>650 kg</span>
+                        </div>
+                        <div class="price">USD 6,950</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Rock Picker / Stone Picker Attachment',
+               'Powerful Stone Picker Attachment.',
+               'USD 23,900',
+               'img/lb-avant-lawn-aerator-1831.jpg'
+            )">
+                        <img src="img/lb-avant-lawn-aerator-1831.jpg" />
+                        <h3>Rock Picker / Stone Picker Attachment</h3>
+                        <div class="product-desc">Powerful Stone Picker Attachment.</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <!-- <span>14,000 hrs</span> -->
+                            <span>2,800 kg</span>
+                        </div>
+                        <div class="price">USD 23,900</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Excavator Grapple',
+               'Excavator Grapple / Log Grapple.',
+               'USD 8,750',
+               'img/OIP16.webp'
+            )">
+                        <img src="img/OIP16.webp" />
+                        <h3>Excavator Grapple</h3>
+                        <div class="product-desc">Excavator Grapple / Log Grapple.</div>
+                        <div class="meta">
+                            <span>2019</span>
+                            <!-- <span>31,436 km</span> -->
+                            <span>950 kg</span>
+                        </div>
+                        <div class="price">USD 8,750</div>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Ripper Attachment / Root Rake',
+               'Root Rake ideal for urban and tight job sites.',
+               'USD 16,999',
+               'img/OIP17.webp'
+            )">
+                        <img src="img/OIP17.webp" />
+                        <h3>Ripper Attachment</h3>
+                        <div class="product-desc">Root Rake ideal for urban sites.</div>
+                        <div class="meta">
+                            <span>2022</span>
+                            <!-- <span>6,000 hrs</span> -->
+                            <span>1,610 kg</span>
+                        </div>
+                        <div class="price">USD 16,999</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Crawler Excavator (Long-Reach Excavator)',
+               'Long-Reach Excavator with excellent reliability.',
+               'USD 63,090',
+               'img/heavy-machine-2.jpg'
+            )">
+                        <img src="img/heavy-machine-2.jpg" />
+                        <h3>Crawler Excavator </h3>
+                        <div class="product-desc">Crawler Excavator (Long-Reach Excavator).</div>
+                        <div class="meta">
+                            <span>2021</span>
+                            <span>125 HP</span>
+                            <span>4,570 kg</span>
+                        </div>
+                        <div class="price">USD 63,090</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Truck-Mounted Knuckle Boom Crane',
+               'Knuckle Boom Crane suitable for large earthworks.',
+               'USD 65,000',
+               'img/Shuttlelift-9.jpg'
+            )">
+                        <img src="img/Shuttlelift-9.jpg" />
+                        <h3>Truck-Mounted Knuckle Boom Crane</h3>
+                        <div class="product-desc"> 'Knuckle Boom Crane suitable for large earthworks.',
+                            .</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <span>110 HP</span>
+                            <span>10,066 kg</span>
+                        </div>
+                        <div class="price">USD 65,000</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Load-Haul-Dump (LHD) Loader',
+               'Underground Mining Loader.',
+               'USD 70,950',
+               'img/wx18h-underground-mining-loader-5.jpg'
+            )">
+                        <img src="img/wx18h-underground-mining-loader-5.jpg" />
+                        <h3>Load-Haul-Dump (LHD) Loader </h3>
+                        <div class="product-desc">Underground Mining Loader.</div>
+                        <div class="meta">
+                            <span>2019</span>
+                            <span>300 HP</span>
+                            <span>12,080 kg</span>
+                        </div>
+                        <div class="price">USD 70,950</div>
+                    </a>
+                </div>
+
             </div>
         </div>
 
 
+        <!-- PAGE 2 -->
+        <div class="product-page">
+
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+                   'Agricultural Dump Trailer / Tipping Trailer',
+                   'Dump Trailer ideal for urban and tight job sites.',
+                   'USD 67,000',
+                   'img/heavy-machine-4.jpg'
+            )">
+
+                        <img src="img/heavy-machine-4.jpg" />
+                        <h3>Agricultural Dump Trailer / Tipping Trailer</h3>
+                        <div class="product-desc">Dump Trailer ideal for urban and tight job sites.</div>
+                        <div class="meta">
+                            <span>2021</span>
+                            <!-- <span>N/A (Tow-behind)</span> -->
+                            <span>5,500 kg</span>
+                        </div>
+                        <div class="price">USD 67,000</div>
+                    </a>
+                </div>
+
+
+
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+                   'Telehandler (Telescopic Handler)',
+                   'Telescopic Handler with excellent reliability.',
+                   'USD 65,300',
+                   'img/pick-carry9.png'
+                )">
+
+                        <img src="img/pick-carry9.png" />
+                        <h3>Telehandler </h3>
+                        <div class="product-desc">Telehandler (Telescopic Handler).</div>
+                        <div class="meta">
+                            <span>2022</span>
+                            <span>125 HP</span>
+                            <span>11,000 kg</span>
+                        </div>
+                        <div class="price">USD 65,300</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+                   'Root Rake Attachment',
+                   'Root Rake Attachment (Excavator/Dozer Root Rake).',
+                   'USD 24,999',
+                   'img/heavy-machine-14.jpg'
+                )">
+                        <img src="img/heavy-machine-14.jpg" />
+                        <h3>Root Rake Attachment</h3>
+                        <div class="product-desc">Root Rake Attachment (Excavator/Dozer Root Rake).</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <!-- <span>31,436 km</span> -->
+                            <span>2,200 kg</span>
+                        </div>
+                        <div class="price">USD 24,999</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+                   'Cummins Marine Diesel Engine',
+                   'QSK95.7550GSI: Cummins OEM Marine Engine.',
+                   'USD 36,950',
+                   'img/whatsappnew.jpeg'
+                )">
+                        <img src="img/whatsappnew.jpeg" />
+                        <h3>Cummins Marine Diesel Engine</h3>
+                        <div class="product-desc">QSK95.7550GSI: Cummins OEM Marine Engine.</div>
+                        <div class="meta">
+                            <span>2022</span>
+                            <span>4000 HP</span>
+                            <span>1,100 kg</span>
+                        </div>
+                        <div class="price">USD 36,950</div>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'John Deere Gator Utility Vehicle (UTV)',
+               'John Deere Gator Utility Vehicles.',
+               'USD 42,000',
+               'img/heavy-machine-19.jpg'
+            )">
+                        <img src="img/heavy-machine-19.jpg" />
+                        <h3>John Deere Gator Utility Vehicle (UTV)</h3>
+                        <div class="product-desc">John Deere Gator Utility Vehicles.</div>
+                        <div class="meta">
+                            <span>2021</span>
+                            <span>54 HP</span>
+                            <span>900 kg</span>
+                        </div>
+                        <div class="price">USD 42,000</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Log Grapple / Timber Grapple',
+               'Log / Timber Grapple with excellent reliability.',
+               'USD 15,999',
+               'img/img18.jpg'
+            )">
+                        <img src="img/img18.jpg" />
+                        <h3>Log Grapple</h3>
+                        <div class="product-desc">Log Grapple / Timber Grapple.</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <!-- <span>39,450 km</span> -->
+                            <span>1,400 kg</span>
+                        </div>
+                        <div class="price">USD 15,999</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Compact Track Loader (CTL)',
+               'Track Loader suitable for large earthworks.',
+               'USD 61,500',
+               'img/heavy-machine-13.jpg'
+            )">
+                        <img src="img/heavy-machine-13.jpg" />
+                        <h3>Compact Track Loader (CTL)</h3>
+                        <div class="product-desc">Track Loader suitable for large earthworks.</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <span>100 HP</span>
+                            <span>4,800 kg</span>
+                        </div>
+                        <div class="price">USD 61,500</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Self-Propelled Wood Chipper',
+               'Self-Propelled Wood / Tree Chipper.',
+               'USD 74,100',
+               'img/heavy-machine-12.jpg'
+            )">
+                        <img src="img/heavy-machine-12.jpg" />
+                        <h3>Self-Propelled Wood Chipper</h3>
+                        <div class="product-desc">Self-Propelled Wood Chipper / Tree Chipper.</div>
+                        <div class="meta">
+                            <span>2019</span>
+                            <span>320 HP</span>
+                            <span>18,500 kg</span>
+                        </div>
+                        <div class="price">USD 74,100</div>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+            'Mini Excavator',
+            'Compact excavator ideal for urban and tight job sites.',
+            'USD 31,500',
+            'img/escavator.webp'
+          )">
+                        <img src="img/escavator.webp" />
+                        <h3>Mini Excavator</h3>
+                        <div class="product-desc">Compact excavator ideal for urban and tight job sites.</div>
+                        <div class="meta">
+                            <span>2023</span>
+                            <span>35 HP</span>
+                            <span>3,600 kg</span>
+                        </div>
+                        <div class="price">USD 31,500</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Root Grapple / Brush Grapple',
+               'Root / Brush Grapple with excellent reliability.',
+               'USD 6,950',
+               'img/EZ-Grapple-onfront15.png'
+            )">
+                        <img src="img/EZ-Grapple-onfront15.png" />
+                        <h3>Root Grapple</h3>
+                        <div class="product-desc">Root Grapple / Brush Grapple.</div>
+                        <div class="meta">
+                            <span>2023</span>
+                            <!-- <span>39,455 km</span> -->
+                            <span>650 kg</span>
+                        </div>
+                        <div class="price">USD 6,950</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Rock Picker / Stone Picker Attachment',
+               'Powerful Stone Picker Attachment.',
+               'USD 23,900',
+               'img/lb-avant-lawn-aerator-1831.jpg'
+            )">
+                        <img src="img/lb-avant-lawn-aerator-1831.jpg" />
+                        <h3>Rock Picker / Stone Picker Attachment</h3>
+                        <div class="product-desc">Powerful Stone Picker Attachment.</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <!-- <span>14,000 hrs</span> -->
+                            <span>2,800 kg</span>
+                        </div>
+                        <div class="price">USD 23,900</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Excavator Grapple',
+               'Excavator Grapple / Log Grapple.',
+               'USD 8,750',
+               'img/OIP16.webp'
+            )">
+                        <img src="img/OIP16.webp" />
+                        <h3>Excavator Grapple</h3>
+                        <div class="product-desc">Excavator Grapple / Log Grapple.</div>
+                        <div class="meta">
+                            <span>2019</span>
+                            <!-- <span>31,436 km</span> -->
+                            <span>950 kg</span>
+                        </div>
+                        <div class="price">USD 8,750</div>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Ripper Attachment / Root Rake',
+               'Root Rake ideal for urban and tight job sites.',
+               'USD 16,999',
+               'img/OIP17.webp'
+            )">
+                        <img src="img/OIP17.webp" />
+                        <h3>Ripper Attachment</h3>
+                        <div class="product-desc">Root Rake ideal for urban sites.</div>
+                        <div class="meta">
+                            <span>2022</span>
+                            <!-- <span>6,000 hrs</span> -->
+                            <span>1,610 kg</span>
+                        </div>
+                        <div class="price">USD 16,999</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Crawler Excavator (Long-Reach Excavator)',
+               'Long-Reach Excavator with excellent reliability.',
+               'USD 63,090',
+               'img/heavy-machine-2.jpg'
+            )">
+                        <img src="img/heavy-machine-2.jpg" />
+                        <h3>Crawler Excavator </h3>
+                        <div class="product-desc">Crawler Excavator (Long-Reach Excavator).</div>
+                        <div class="meta">
+                            <span>2021</span>
+                            <span>125 HP</span>
+                            <span>4,570 kg</span>
+                        </div>
+                        <div class="price">USD 63,090</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Truck-Mounted Knuckle Boom Crane',
+               'Knuckle Boom Crane suitable for large earthworks.',
+               'USD 65,000',
+               'img/Shuttlelift-9.jpg'
+            )">
+                        <img src="img/Shuttlelift-9.jpg" />
+                        <h3>Truck-Mounted Knuckle Boom Crane</h3>
+                        <div class="product-desc"> 'Knuckle Boom Crane suitable for large earthworks.',
+                            .</div>
+                        <div class="meta">
+                            <span>2020</span>
+                            <span>110 HP</span>
+                            <span>10,066 kg</span>
+                        </div>
+                        <div class="price">USD 65,000</div>
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <button class="save-machine-button" type="button" aria-label="Save this machine" aria-pressed="false">♡ <span>Save</span></button>
+                    <a href="product-details.html" onclick="selectProduct(
+               'Load-Haul-Dump (LHD) Loader',
+               'Underground Mining Loader.',
+               'USD 70,950',
+               'img/wx18h-underground-mining-loader-5.jpg'
+            )">
+                        <img src="img/wx18h-underground-mining-loader-5.jpg" />
+                        <h3>Load-Haul-Dump (LHD) Loader </h3>
+                        <div class="product-desc">Underground Mining Loader.</div>
+                        <div class="meta">
+                            <span>2019</span>
+                            <span>300 HP</span>
+                            <span>12,080 kg</span>
+                        </div>
+                        <div class="price">USD 70,950</div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="noSearchResults" class="no-search-results">No machines match your search. Try another model or keyword.</div>
+
+        <div class="pagination">
+
+            <button class="page-btn active" onclick="showPage(1)">1</button>
+
+            <button class="page-btn" onclick="showPage(2)">2</button>
+
+            <button class="next-btn" onclick="nextPage()">
+                Next <span>→</span>
+            </button>
+
+        </div>
+
+    </section>
+
+    <style>
+        /* PRODUCT PAGINATION */
+
+        .product-page {
+            display: none;
+        }
+
+        .product-page.active {
+            display: block;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 45px;
+        }
+
+        .page-btn,
+        .next-btn {
+            border: 1px solid #dbe3ec;
+            background: #fff;
+            color: #334155;
+            padding: 11px 16px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .page-btn:hover,
+        .next-btn:hover {
+            background: #0d4ea6;
+            color: #fff;
+            border-color: #0d4ea6;
+        }
+
+        .page-btn.active {
+            background: #0d4ea6;
+            color: #fff;
+            border-color: #0d4ea6;
+        }
+
+        .next-btn {
+            padding: 11px 18px;
+        }
+
+        .next-btn span {
+            margin-left: 5px;
+        }
+    </style>
+
+    <!-- FOOTER -->
+    
+    <div class="saved-panel-backdrop" id="savedPanelBackdrop" hidden>
+        <section class="saved-panel" role="dialog" aria-modal="true" aria-labelledby="savedPanelTitle">
+            <div class="saved-panel-heading">
+                <div>
+                    <p class="saved-eyebrow">YOUR SHORTLIST</p>
+                    <h2 id="savedPanelTitle">Saved machines</h2>
+                </div>
+                <button type="button" class="saved-close" id="closeSavedPanel" aria-label="Close saved machines">×</button>
+            </div>
+            <div id="savedMachinesList" class="saved-machines-list">
+                <p class="saved-empty">You haven't saved any machines yet. Use the Save button on a product card to build your shortlist.</p>
+            </div>
+        </section>
     </div>
 
+<footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-col footer-brand">
+                <p>
+                    Makana connects quality machinery with the global market, ensuring
+                    safe transactions for buyers and sellers.
+                </p>
+
+                <div class="socials" aria-label="Social media channels">
+                    <span aria-label="LinkedIn">in</span>
+                    <span aria-label="Instagram">ig</span>
+                    <span aria-label="Google">G</span>
+                    <span aria-label="Reviews">★</span>
+                    <span aria-label="Video channel">▶</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About us</a></li>
+                    <li><span class="footer-coming-soon">Auctions <small>Coming soon</small></span></li>
+                    <li><span class="footer-coming-soon">Watch shows <small>Coming soon</small></span></li>
+                    <li><span class="footer-coming-soon">News <small>Coming soon</small></span></li>
+                    <li><span class="footer-coming-soon">Documentation <small>Coming soon</small></span></li>
+                    <li class="highlight">
+                        <span class="footer-coming-soon">Book a demo <small>Coming soon</small></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Help and Support</h4>
+                <ul>
+                    <li><a href="#" id="footerContactLink">Contact Us</a></li>
+                    <li><a href="products.html">How to buy</a></li>
+                    <li><span class="footer-coming-soon">How to sell <small>Coming soon</small></span></li>
+                    <li><span class="footer-coming-soon">Financing <small>Coming soon</small></span></li>
+                    <li><span class="footer-coming-soon">Installments <small>Coming soon</small></span></li>
+                    <li><span class="footer-coming-soon">FAQ <small>Coming soon</small></span></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><span class="footer-coming-soon">Privacy Policy <small>Coming soon</small></span></li>
+                    <li><span class="footer-coming-soon">Terms &amp; Conditions <small>Coming soon</small></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Makana Machinery Hub. All rights reserved.
+        </div>
+    </footer>
+
+
     <script>
-        // Load selected product from checkout
-        const storedProduct = localStorage.getItem("selectedProduct");
+        function selectProduct(name, desc, price, img) {
+            const product = {
+                name: name,
+                desc: desc,
+                price: price,
+                img: img
+            };
 
-        if (!storedProduct) {
-            alert("No order found. Redirecting to products page.");
-            window.location.href = "products.html";
-        }
-
-        const product = JSON.parse(storedProduct);
-
-        // Set total price dynamically
-        const totalInput = document.getElementById("total-amount");
-        if (totalInput) {
-            totalInput.value = product.price;
+            localStorage.setItem("selectedProduct", JSON.stringify(product));
         }
     </script>
 
-
     <script>
-        // Toggle between Card and Crypto views
-        function togglePaymentFields() {
-            const mode = document.getElementById('payment-mode').value;
-            document.getElementById('card-details').classList.toggle('hidden', mode !== 'card');
-            document.getElementById('crypto-details').classList.toggle('hidden', mode !== 'crypto');
-        }
+        let currentPage = 1;
 
-        // Handle Copy to Clipboard function
-        function copyAddress() {
-            const address = document.getElementById('btc-address').innerText;
-            const tooltip = document.getElementById('copy-tooltip');
-            navigator.clipboard.writeText(address).then(() => {
-                tooltip.classList.add('show');
-                setTimeout(() => { tooltip.classList.remove('show'); }, 2000);
+        function showPage(pageNumber) {
+
+            const pages = document.querySelectorAll(".product-page");
+            const buttons = document.querySelectorAll(".page-btn");
+
+            pages.forEach((page, index) => {
+                page.classList.toggle("active", index === pageNumber - 1);
+            });
+
+            buttons.forEach((button, index) => {
+                button.classList.toggle("active", index === pageNumber - 1);
+            });
+
+            currentPage = pageNumber;
+
+            window.scrollTo({
+                top: document.querySelector(".products-container").offsetTop - 80,
+                behavior: "smooth"
             });
         }
 
-        // Generate QR Code on Page Load
-        window.onload = function () {
-            const btcAddress = document.getElementById('btc-address').innerText;
-            new QRCode(document.getElementById("qrcode-container"), {
-                text: `bitcoin:${btcAddress}`,
-                width: 180,
-                height: 180,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
+
+        function nextPage() {
+
+            const totalPages = document.querySelectorAll(".product-page").length;
+
+            if (currentPage < totalPages) {
+                showPage(currentPage + 1);
+            } else {
+                showPage(1);
+            }
+        }
+
+        // Product search: searches all pages and temporarily shows every matching card.
+        const productSearchInput = document.getElementById("productSearch");
+        const clearProductSearchButton = document.getElementById("clearProductSearch");
+        const searchResultsStatus = document.getElementById("searchResultsStatus");
+        const noSearchResults = document.getElementById("noSearchResults");
+        const productPages = Array.from(document.querySelectorAll(".product-page"));
+        const productPagination = document.querySelector(".pagination");
+
+        function filterProducts() {
+            const query = productSearchInput.value.trim().toLowerCase();
+            let matchCount = 0;
+
+            productPages.forEach((page) => {
+                const cards = Array.from(page.querySelectorAll(".product-card"));
+                let pageHasMatches = false;
+
+                cards.forEach((card) => {
+                    const searchableText = card.textContent.toLowerCase();
+                    const matches = !query || searchableText.includes(query);
+
+                    card.style.display = matches ? "" : "none";
+                    if (matches) {
+                        matchCount++;
+                        pageHasMatches = true;
+                    }
+                });
+
+                page.classList.toggle("active", query ? pageHasMatches : page === productPages[currentPage - 1]);
             });
+
+            const searching = query.length > 0;
+            if (productPagination) {
+                productPagination.style.display = searching ? "none" : "";
+            }
+
+            noSearchResults.style.display = searching && matchCount === 0 ? "block" : "none";
+            searchResultsStatus.textContent = searching
+                ? `${matchCount} machine${matchCount === 1 ? "" : "s"} found for "${productSearchInput.value.trim()}".`
+                : "";
+
+            clearProductSearchButton.style.visibility = searching ? "visible" : "hidden";
+        }
+
+        productSearchInput.addEventListener("input", filterProducts);
+
+        clearProductSearchButton.addEventListener("click", () => {
+            productSearchInput.value = "";
+            filterProducts();
+            productSearchInput.focus();
+        });
+
+        // Keep pagination working normally after a search is cleared.
+        const originalShowPage = showPage;
+        showPage = function(pageNumber) {
+            originalShowPage(pageNumber);
+            if (!productSearchInput.value.trim()) {
+                productPages.forEach((page, index) => {
+                    page.querySelectorAll(".product-card").forEach(card => card.style.display = "");
+                    page.classList.toggle("active", index === pageNumber - 1);
+                });
+            }
         };
 
-        // Form Submit Logic
-        document.getElementById('payment-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const mode = document.getElementById('payment-mode').value;
+        clearProductSearchButton.style.visibility = "hidden";
 
-            if (mode === 'crypto') {
-                document.getElementById('payment-form').style.display = 'none';
-                document.getElementById('checkout-title').style.display = 'none';
-                document.getElementById('crypto-success-message').classList.remove('hidden');
-                window.scrollTo(0, 0);
-            } else {
-                alert("Processing card payment...");
-            }
-        });
-
-        // === UPDATED SUPPORT TRIGGER ===
-        document.getElementById('support-trigger').addEventListener('click', function () {
-            if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
-
-                // 1. Get the name from the input field
-                const customerName = document.querySelector('input[value]').value || "Customer";
-
-                // 2. Set the visitor's name in Tawk.to so the agent sees it immediately
-                Tawk_API.setAttributes({
-                    'name': customerName,
-                    'subject': 'Crypto Receipt Submission'
-                }, function (error) { });
-
-                // 3. Open the chat window
-                Tawk_API.maximize();
-
-                // 4. Automatically send a message on behalf of the user
-                // We add a tiny delay (500ms) to ensure the window is fully open
-                setTimeout(() => {
-                    Tawk_API.sendMessage(`Hello, I'm ${customerName}. I've just completed my Bitcoin payment for Makana. I'm here to provide my transaction receipt.`);
-                }, 500);
-
-            } else {
-                alert("Support chat is still loading. Please wait a second.");
-            }
-        });
     </script>
-    <!-- <script>
-        // Disable right-click
-        document.addEventListener("contextmenu", function (e) {
-            e.preventDefault();
-            alert("Right-click is disabled on this website!");
-        });
-
-        // Disable certain keyboard shortcuts
-        document.addEventListener("keydown", function (e) {
-            // F12
-            if (e.key === "F12") {
-                e.preventDefault();
-                alert("This shortcut is disabled!");
-            }
-
-            // Ctrl+Shift+I or Cmd+Option+I (Open DevTools)
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "i") {
-                e.preventDefault();
-                alert("This shortcut is disabled!");
-            }
-
-            // Ctrl+Shift+J or Cmd+Option+J (Console)
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "j") {
-                e.preventDefault();
-                alert("This shortcut is disabled!");
-            }
-
-            // Ctrl+U or Cmd+U (View Source)
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "u") {
-                e.preventDefault();
-                alert("Viewing source is disabled!");
-            }
-
-            // Ctrl+S or Cmd+S (Save page)
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
-                e.preventDefault();
-                alert("Saving the page is disabled!");
-            }
-        });
-    </script> -->
-
-    <!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
@@ -483,6 +1930,176 @@
         })();
     </script>
     <!--End of Tawk.to Script-->
+
+
+<script>
+(() => {
+    const STORAGE_KEY = "makana_saved_machines";
+    const savedButton = document.getElementById("savedMachinesButton");
+    const savedCount = document.getElementById("savedMachinesCount");
+    const savedBackdrop = document.getElementById("savedPanelBackdrop");
+    const savedList = document.getElementById("savedMachinesList");
+    const closeSaved = document.getElementById("closeSavedPanel");
+    const checkoutButton = document.getElementById("checkoutButton");
+    const supportButton = document.getElementById("supportButton");
+    const navContactLink = document.getElementById("navContactLink");
+    const navToggle = document.getElementById("mobileNavToggle");
+    const nav = document.getElementById("mainNavigation");
+    const moreToggle = document.getElementById("moreMenuToggle");
+    const moreMenu = document.getElementById("moreMenu");
+
+    function readSaved() {
+        try {
+            const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+            return Array.isArray(value) ? value : [];
+        } catch {
+            return [];
+        }
+    }
+
+    function writeSaved(items) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+        renderSaved();
+    }
+
+    function renderSaved() {
+        const items = readSaved();
+        savedCount.textContent = items.length;
+        savedList.innerHTML = "";
+
+        if (!items.length) {
+            savedList.innerHTML = '<p class="saved-empty">You haven’t saved any machines yet. Use the Save button on a product card to build your shortlist.</p>';
+        } else {
+            items.forEach((item) => {
+                const row = document.createElement("article");
+                row.className = "saved-machine-item";
+
+                const image = document.createElement("img");
+                image.src = item.img;
+                image.alt = item.name;
+
+                const info = document.createElement("div");
+                const title = document.createElement("h3");
+                title.textContent = item.name;
+                const price = document.createElement("p");
+                price.textContent = item.price;
+                info.append(title, price);
+
+                const remove = document.createElement("button");
+                remove.className = "saved-remove";
+                remove.type = "button";
+                remove.textContent = "Remove";
+                remove.addEventListener("click", () => {
+                    writeSaved(readSaved().filter(saved => saved.name !== item.name));
+                    syncSaveButtons();
+                });
+
+                row.append(image, info, remove);
+                savedList.append(row);
+            });
+        }
+        syncSaveButtons();
+    }
+
+    function syncSaveButtons() {
+        const savedNames = new Set(readSaved().map(item => item.name));
+        document.querySelectorAll(".product-card").forEach(card => {
+            const button = card.querySelector(".save-machine-button");
+            const link = card.querySelector('a[href="product-details.html"]');
+            if (!button || !link) return;
+
+            const name = link.querySelector("h3")?.textContent.trim() || "";
+            const isSaved = savedNames.has(name);
+            button.classList.toggle("is-saved", isSaved);
+            button.setAttribute("aria-pressed", String(isSaved));
+            button.innerHTML = isSaved ? '♥ <span>Saved</span>' : '♡ <span>Save</span>';
+            button.setAttribute("aria-label", isSaved ? `Remove ${name} from saved machines` : `Save ${name}`);
+        });
+    }
+
+    document.querySelectorAll(".product-card").forEach(card => {
+        const button = card.querySelector(".save-machine-button");
+        const link = card.querySelector('a[href="product-details.html"]');
+        if (!button || !link) return;
+
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const name = link.querySelector("h3")?.textContent.trim() || "Machine";
+            const desc = link.querySelector(".product-desc")?.textContent.trim() || "";
+            const price = link.querySelector(".price")?.textContent.trim() || "";
+            const img = link.querySelector("img")?.getAttribute("src") || "";
+            const items = readSaved();
+
+            if (items.some(item => item.name === name)) {
+                writeSaved(items.filter(item => item.name !== name));
+            } else {
+                writeSaved([...items, { name, desc, price, img }]);
+            }
+        });
+    });
+
+    savedButton.addEventListener("click", () => {
+        renderSaved();
+        savedBackdrop.hidden = false;
+        closeSaved.focus();
+    });
+
+    function closeSavedPanel() {
+        savedBackdrop.hidden = true;
+        savedButton.focus();
+    }
+
+    closeSaved.addEventListener("click", closeSavedPanel);
+    savedBackdrop.addEventListener("click", event => {
+        if (event.target === savedBackdrop) closeSavedPanel();
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !savedBackdrop.hidden) closeSavedPanel();
+    });
+
+    checkoutButton.addEventListener("click", () => {
+        const selected = localStorage.getItem("selectedProduct");
+        window.location.href = selected ? "checkout.html" : "products.html";
+    });
+
+    function openSupport() {
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === "function") {
+            window.Tawk_API.maximize();
+        } else {
+            alert("Live chat is not available yet. Please try again in a moment.");
+        }
+    }
+
+    supportButton.addEventListener("click", openSupport);
+    navContactLink.addEventListener("click", event => {
+        event.preventDefault();
+        openSupport();
+    });
+
+    const footerContactLink = document.getElementById("footerContactLink");
+    if (footerContactLink) {
+        footerContactLink.addEventListener("click", event => {
+            event.preventDefault();
+            openSupport();
+        });
+    }
+
+    navToggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("mobile-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    moreToggle.addEventListener("click", () => {
+        const isOpen = moreMenu.classList.toggle("open");
+        moreToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    renderSaved();
+})();
+</script>
 
 </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 

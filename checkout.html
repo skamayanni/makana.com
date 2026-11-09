@@ -1,611 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout - Makana</title>
-    <link rel="stylesheet" href="checkout.css" />
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f8f8f8;
-        }
-
-        /* Global link styling */
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #0d4ea6;
-            /* Your brand blue */
-        }
-
-        .top-bar {
-            background: #b7d3ff;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 8px 0;
-            position: relative;
-        }
-
-        .ticker {
-            display: inline-block;
-            padding-left: 100%;
-            animation: scroll-left 15s linear infinite;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-
-        * {
-            box-sizing: border-box;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        body {
-            overflow-x: hidden;
-        }
-
-
-
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 20px;
-            gap: 15px;
-        }
-
-        .search-box {
-            flex: 1;
-            max-width: 420px;
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 10px 40px 10px 14px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
-
-
-        .search-icon {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .header-icons span {
-            margin-left: 16px;
-            font-size: 18px;
-        }
-
-        .nav {
-            display: flex;
-            gap: 20px;
-            padding: 10px 40px;
-            font-size: 14px;
-        }
-
-        .nav a {
-            color: #334155;
-            cursor: pointer;
-        }
-
-        .nav .active {
-            font-weight: 600;
-        }
-
-        .section {
-            padding: 40px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .section-header h2 span {
-            color: #94a3b8;
-            font-weight: 400;
-        }
-
-
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .header-left {
-                text-align: center;
-            }
-
-            .header-left img {
-                max-height: 40px;
-            }
-
-            .search-box {
-                max-width: 100%;
-            }
-
-            .header-icons {
-                display: flex;
-                justify-content: center;
-                gap: 18px;
-                font-size: 20px;
-            }
-        }
-
-        .checkout-section {
-            padding: 50px 20px;
-            background: #f1f5f9;
-        }
-
-        @media (max-width: 900px) {
-            .checkout-section {
-                padding: 10px 5px;
-                background: #f1f5f9;
-            }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .checkout-section h2 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .checkout-grid {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .checkout-form,
-        .order-summary {
-            background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            flex: 1 1 400px;
-            max-width: 480px;
-        }
-
-        .checkout-form h3,
-        .order-summary h3 {
-            margin-bottom: 20px;
-        }
-
-        .checkout-form label {
-            display: block;
-            margin-top: 15px;
-            font-weight: 500;
-        }
-
-        .checkout-form input,
-        .checkout-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
-        .checkout-form button {
-            margin-top: 20px;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: #facc15;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .product-summary {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .product-summary img {
-            width: 100px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-
-        .product-info h4 {
-            margin: 0 0 5px;
-        }
-
-        .total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .footer {
-            background: #1f2937;
-            color: #cbd5e1;
-            padding: 80px 60px 40px;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-brand p {
-            max-width: 320px;
-            line-height: 1.7;
-            font-size: 14px;
-            color: #94a3b8;
-        }
-
-        .socials {
-            display: flex;
-            gap: 12px;
-            margin-top: 18px;
-        }
-
-        .socials a {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            background: #334155;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #e5e7eb;
-            font-size: 12px;
-            text-decoration: none;
-        }
-
-        .footer-col h4 {
-            color: #f1f5f9;
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col ul li a {
-            text-decoration: none;
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        .footer-col ul li a:hover {
-            color: #e5e7eb;
-        }
-
-        .footer-col .highlight a {
-            color: #3b82f6;
-            font-weight: 500;
-        }
-
-        .footer-col .highlight span {
-            margin-left: 6px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 60px;
-            font-size: 13px;
-            color: #64748b;
-        }
-
-        @media (max-width: 768px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-col h4 {
-                margin-bottom: 12px;
-            }
-        }
-
-
-        @media (max-width: 600px) {
-
-            .section {
-                padding: 24px 16px;
-            }
-
-            .nav {
-                padding: 10px 16px;
-            }
-
-            .container {
-                padding: 60px 16px;
-            }
-
-            .footer {
-                padding: 50px 16px 30px;
-            }
-
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Secure checkout at Makana Machinery Hub.">
+  <title>Secure Checkout | Makana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="checkout.css">
 </head>
-
 <body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Makana home">
+      <img src="img/makana.com (2).svg" alt="Makana Machinery Hub">
+    </a>
+    <div class="header-trust"><span class="lock">⌑</span> Secure order checkout</div>
+    <a class="back-link" href="products.html">← Continue shopping</a>
+  </header>
 
-    <!-- 🔹 HEADER -->
-    <!-- TOP INFO BAR -->
-    <div class="top-bar">
-        <div class="ticker">
-            Complete purchase by utilizing our Cryptocurrency payment option(s) and get up to USD 10,000 Cashback. Offer
-            ends Oct 30th.
-        </div>
+  <main class="page-shell">
+    <div class="intro">
+      <div class="eyebrow">MAKANA MACHINERY HUB</div>
+      <h1>Complete your order</h1>
+      <p>Review your equipment and provide your delivery details. Next, choose a preferred payment method and contact Makana customer care to confirm the payment process.</p>
+      <div class="steps" aria-label="Checkout progress">
+        <div class="step current"><span>1</span><b>Details</b></div>
+        <i></i>
+        <div class="step"><span>2</span><b>Payment</b></div>
+        <i></i>
+        <div class="step"><span>3</span><b>Confirmation</b></div>
+      </div>
     </div>
 
-
-    <!-- HEADER -->
-    <header class="header">
-        <div class="header-left">
-            <a href="index.html">
-                <img src="img/makana.com (2).svg" alt="logo-light">
-            </a>
-        </div>
-
-        <div class="search-box">
-            <input type="text" placeholder="Search by Model">
-            <span class="search-icon">🔍</span>
-        </div>
-
-        <div class="header-icons">
-            <span>🔖</span>
-            <span>🛒</span>
-            <span>👤</span>
-        </div>
-    </header>
-
-    <!-- 🔹 CHECKOUT SECTION -->
-    <section class="checkout-section">
-        <div class="container">
-            <h2 id="checkout-title"><strong>SECURE CHECKOUT</strong></h2>
-
-            <div class="checkout-grid">
-
-                <!-- Customer Info -->
-                <div class="checkout-form">
-                    <h3>Customer Details</h3>
-                    <form id="checkoutForm">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" placeholder="John Doe" required>
-
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="example@mail.com" required>
-
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" placeholder="+971 50 123 4567" required>
-
-                        <label for="address">Delivery Address</label>
-                        <textarea id="address" placeholder="Street, City, Country" required></textarea>
-
-
-                        <button type="submit" class="btn-primary">
-                            Place Order
-                        </button>
-
-
-                    </form>
-                </div>
-
-                <!-- Order Summary -->
-                <div class="order-summary">
-                    <h3>Order Summary</h3>
-                    <div class="product-summary">
-                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200" />
-                        <div class="product-info">
-                            <h4 id="productName">Hydraulic Excavator</h4>
-                            <p id="productDesc">Heavy-duty excavator suitable for large construction projects.</p>
-                            <strong id="productPrice">USD 250,000</strong>
-                        </div>
-                    </div>
-
-                    <div class="total">
-                        <span>Total:</span>
-                        <strong id="totalPrice">USD 250,000</strong>
-                    </div>
-                </div>
-
+    <div class="checkout-layout">
+      <section class="form-column">
+        <form id="checkoutForm" novalidate>
+          <section class="panel">
+            <div class="panel-heading">
+              <div class="heading-icon">01</div>
+              <div><h2>Contact information</h2><p>Where we can send your order updates.</p></div>
             </div>
+            <div class="field-grid">
+              <label class="field full">Full name
+                <input id="customerName" name="name" type="text" autocomplete="name" placeholder="Your full name" required>
+              </label>
+              <label class="field">Email address
+                <input id="customerEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+              </label>
+              <label class="field">Phone number
+                <input id="customerPhone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000" required>
+              </label>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <div class="heading-icon">02</div>
+              <div><h2>Delivery information</h2><p>Tell us where the machinery should be delivered.</p></div>
+            </div>
+            <div class="field-grid">
+              <label class="field full">Street address
+                <input id="address" name="address" autocomplete="street-address" placeholder="Street address and building number" required>
+              </label>
+              <label class="field">City
+                <input id="city" name="city" autocomplete="address-level2" placeholder="City" required>
+              </label>
+              <label class="field">State / Province
+                <input id="region" name="region" autocomplete="address-level1" placeholder="State or province">
+              </label>
+              <label class="field">Postal / ZIP code
+                <input id="postalCode" name="postalCode" autocomplete="postal-code" placeholder="Postal code">
+              </label>
+              <label class="field">Country
+                <input id="country" name="country" autocomplete="country-name" placeholder="Country" required>
+              </label>
+              <label class="field full">Delivery notes <span class="optional">Optional</span>
+                <textarea id="deliveryNotes" name="deliveryNotes" rows="3" placeholder="Site access, preferred delivery window, or other instructions"></textarea>
+              </label>
+            </div>
+          </section>
+
+          <section class="panel payment-panel">
+            <div class="panel-heading">
+              <div class="heading-icon">03</div>
+              <div><h2>Payment preference</h2><p>You’ll select cryptocurrency or bank transfer on the next step. No payment details are shown here.</p></div>
+            </div>
+            <div class="provider-note">
+              <span class="provider-symbol">✓</span>
+              <div><strong>Payment arranged with customer care</strong><p>Select your preferred method on the next page. Customer care will confirm the verified payment instructions, final amount and order availability before you pay.</p></div>
+            </div>
+            <p class="payment-caption">Choosing a method does not make a payment or confirm an order.</p>
+          </section>
+
+          <div class="form-error" id="formMessage" role="alert" aria-live="polite"></div>
+          <button class="primary-button" id="submitButton" type="submit">
+            Choose payment method <span aria-hidden="true">→</span>
+          </button>
+          <p class="fine-print">By continuing, you confirm that your order and delivery details are correct. Final taxes, shipping charges and payment terms must be confirmed before payment.</p>
+        </form>
+      </section>
+
+      <aside class="summary-column">
+        <div class="summary-card">
+          <div class="summary-top"><h2>Order summary</h2><span class="summary-badge">Review</span></div>
+          <div id="productSummary" class="product-summary">
+            <div class="product-placeholder"></div>
+            <div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row"><span>Equipment subtotal</span><strong id="subtotal">—</strong></div>
+          <div class="summary-row"><span>Shipping</span><span class="pending">To be confirmed</span></div>
+          <div class="summary-row"><span>Taxes / duties</span><span class="pending">If applicable</span></div>
+          <div class="summary-divider"></div>
+          <div class="summary-total"><span>Estimated equipment total</span><strong id="total">—</strong></div>
+          <p class="summary-disclaimer">This is an estimate based on the product information supplied by the website. The seller must verify the final price, availability, shipping and applicable taxes before a payment request is created.</p>
         </div>
-    </section>
-
-    <!-- 🔹 FOOTER -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col footer-brand">
-                <p>
-                    Makana connects quality machinery with the global market, ensuring
-                    safe transactions for buyers and sellers.
-                </p>
-
-                <div class="socials">
-                    <a href="#">in</a>
-                    <a href="#">ig</a>
-                    <a href="#">g</a>
-                    <a href="#">★</a>
-                    <a href="#">▶</a>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="#">Auctions</a></li>
-                    <li><a href="#">Watch shows</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li class="highlight">
-                        <a href="#">Book a demo <span>→</span></a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Help and Support</h4>
-                <ul>
-                    <li><a href="#" onclick="Tawk_API.maximize(); return false;">
-                            Contact Us
-                        </a></li>
-                    <li><a href="products.html">How to buy</a></li>
-                    <li><a href="#">How to sell</a></li>
-                    <li><a href="#">Financing</a></li>
-                    <li><a href="#">Installments</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                </ul>
-            </div>
+        <div class="assurance-card">
+          <div class="assurance-icon">♧</div>
+          <div><strong>Need assistance?</strong><p>Contact the Makana team if you need help confirming specifications, delivery or your order.</p><a href="products.html">Browse equipment</a></div>
         </div>
+      </aside>
+    </div>
+  </main>
 
-        <div class="footer-bottom">
-            © 2026 Makana Machinery Hub. All rights reserved.
-        </div>
-    </footer>
+  <footer class="site-footer">
+    <span>© 2026 Makana Machinery Hub</span>
+    <span>Order support · Terms · Privacy</span>
+  </footer>
 
-    <script>
-        const productData = localStorage.getItem("selectedProduct");
-
-        if (!productData) {
-            alert("No product selected. Redirecting to products page.");
-            window.location.href = "products.html";
-        }
-
-
-        if (productData) {
-            const product = JSON.parse(productData);
-
-            document.getElementById("productName").textContent = product.name;
-            document.getElementById("productDesc").textContent = product.desc;
-            document.getElementById("productPrice").textContent = product.price;
-            document.getElementById("totalPrice").textContent = product.price;
-
-            document.querySelector(".product-summary img").src = product.img;
-        }
-
-        document.getElementById("checkoutForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            // optional: basic confirmation
-            // alert("Order placed successfully!");
-
-            // clear selected product
-            // localStorage.removeItem("selectedProduct");
-
-            // redirect to payment page
-            window.location.href = "payment.html";
-        });
-    </script>
-
-
-    <!-- <script>
-        // Disable right-click
-        document.addEventListener("contextmenu", function (e) {
-            e.preventDefault();
-            alert("Right-click is disabled on this website!");
-        });
-
-        // Disable certain keyboard shortcuts
-        document.addEventListener("keydown", function (e) {
-            // F12
-            if (e.key === "F12") {
-                e.preventDefault();
-                alert("This shortcut is disabled!");
-            }
-
-            // Ctrl+Shift+I or Cmd+Option+I (Open DevTools)
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "i") {
-                e.preventDefault();
-                alert("This shortcut is disabled!");
-            }
-
-            // Ctrl+Shift+J or Cmd+Option+J (Console)
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "j") {
-                e.preventDefault();
-                alert("This shortcut is disabled!");
-            }
-
-            // Ctrl+U or Cmd+U (View Source)
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "u") {
-                e.preventDefault();
-                alert("Viewing source is disabled!");
-            }
-
-            // Ctrl+S or Cmd+S (Save page)
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
-                e.preventDefault();
-                alert("Saving the page is disabled!");
-            }
-        });
-    </script> -->
-
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function () {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/68c6bc223c57f819275d5edd/1j544tq3s';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
-
-</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
-
+  <script src="checkout.js"></script>
+</body>
 </html>
